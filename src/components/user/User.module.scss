@@ -1,0 +1,7 @@
+.user_wrapper {
+	@apply flex items-center gap-2 font-thin cursor-pointer;
+
+	> svg {
+		@apply text-lg mt-1;
+	}
+}

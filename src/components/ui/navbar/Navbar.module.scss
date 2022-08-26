@@ -1,0 +1,10 @@
+.navbar_wrapper {
+	@apply flex px-8 py-6 justify-between;
+
+	> .navbar_left {
+		@apply flex gap-16;
+		> h1 {
+			@apply text-2xl font-bold;
+		}
+	}
+}

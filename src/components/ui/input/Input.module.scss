@@ -1,0 +1,14 @@
+.input_wrapper {
+	@apply bg-white rounded-2xl h-9 flex w-[356px] items-center relative;
+
+	> input {
+		@apply pl-4 border-none outline-none bg-transparent h-full w-full text-black;
+		&::placeholder {
+			@apply text-gray-500;
+		}
+	}
+
+	> svg {
+		@apply fill-gray-500 absolute right-4 font-bold text-xl;
+	}
+}
