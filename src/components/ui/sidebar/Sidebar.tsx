@@ -1,41 +1,19 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import styles from "./Sidebar.module.scss";
 import { CgClapperBoard } from "react-icons/cg";
 import { GiTv } from "react-icons/gi";
 import { BiGroup } from "react-icons/bi";
-import { nanoid } from "nanoid";
 
-type TypeIcon = {
-	id: string;
-	icon: React.ReactElement<any, any>;
-	active: boolean;
-};
+interface SidebarProps {
+	sidebar_active: string;
+}
 
-const Sidebar = () => {
-	const [icons, setIcons] = useState<TypeIcon[]>([
-		{ id: nanoid(), icon: <CgClapperBoard />, active: true },
-		{ id: nanoid(), icon: <GiTv />, active: false },
-		{ id: nanoid(), icon: <BiGroup />, active: false },
-	]);
-
-	const handleClick = (id: string) => {
-		const newIcons = icons.map((icon) =>
-			icon.id === id ? { ...icon, active: true } : { ...icon, active: false }
-		);
-		setIcons(newIcons);
-	};
-
+const Sidebar: FC<SidebarProps> = ({ sidebar_active }) => {
 	return (
 		<aside className={styles.sidebar_wrapper}>
-			{icons.map((icon) => (
-				<div
-					key={icon.id}
-					onClick={() => handleClick(icon.id)}
-					className={icon.active ? styles.active : ""}
-				>
-					{icon.icon}
-				</div>
-			))}
+			<CgClapperBoard className={sidebar_active === "movies" ? "acitve" : ""} />
+			<GiTv className={sidebar_active === "shows" ? "acitve" : ""} />
+			<BiGroup className={sidebar_active === "actors" ? "acitve" : ""} />
 		</aside>
 	);
 };

@@ -1,0 +1,20 @@
+.backdrop_wrapper {
+	@apply ml-28 max-w-[75vw] h-fit relative;
+
+	> .image_wrapper {
+		@apply relative h-[80vh] w-full brightness-75;
+
+		> img {
+			@apply object-fill;
+		}
+	}
+
+	> .text_wrapper {
+		@apply z-50 top-[15%] right-20 absolute max-w-lg py-6 px-8;
+		background-color: rgba($color: #000000, $alpha: 0.7);
+	}
+}
+
+.button_wrapper {
+	@apply flex gap-6;
+}
