@@ -1,10 +1,9 @@
-import React, { FC, useEffect, useState } from "react";
 import Image from "next/image";
-import { IGenre, IMovie } from "../../types/movie";
+import { FC } from "react";
+import { IMovie } from "../../types/movie";
 import Button from "../ui/button/Button";
-import { getMovieGenres } from "../../utils/getGenreList";
-import styles from "./Backdrop.module.scss";
 import TrailerButton from "../ui/trailer button/TrailerButton";
+import styles from "./Backdrop.module.scss";
 
 interface BackdropProps {
 	movie: IMovie;
@@ -21,15 +20,14 @@ const Backdrop: FC<BackdropProps> = ({ movie, genres }) => {
 						layout="fill"
 					/>
 				)}
-				{/* {imageUrl && <img src={imageUrl} alt={movie.title} />} */}
 			</div>
 			<div className={styles.text_wrapper}>
-				<h1 className="font-bold text-4xl mb-2">{movie.title}</h1>
-				<div className="flex gap-4 font-bold mb-4 text-lg">
+				<h1>{movie.title}</h1>
+				<div className={styles.genre_wrapper}>
 					{genres && <span>{genres}</span>}
 					<span>{movie.vote_average}/10</span>
 				</div>
-				<div className="mb-6 text-[#a2a4a4]">{movie.overview}</div>
+				<div className={styles.description}>{movie.overview}</div>
 				<div className={styles.button_wrapper}>
 					<Button>Learn More</Button>
 					<TrailerButton />

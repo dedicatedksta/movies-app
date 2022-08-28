@@ -1,5 +1,5 @@
 .sidebar_wrapper {
-	@apply h-full w-28 flex flex-col pl-11 gap-10 mt-16 fixed;
+	@apply h-full w-28 flex flex-col pl-11 gap-10 mt-36 fixed;
 
 	> svg {
 		@apply fill-neutral-500 text-3xl cursor-pointer transition-colors ease-in-out duration-200;

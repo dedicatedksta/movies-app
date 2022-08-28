@@ -1,0 +1,49 @@
+.b_movies_wrapper {
+	@apply w-full h-[400px] absolute bottom-0 pl-8  z-50;
+	background-color: rgb(10, 10, 10);
+
+	> .category_wrapper {
+		@apply flex gap-8  my-8 uppercase;
+		> span {
+			@apply relative cursor-pointer text-neutral-500 hover:text-white transition-colors ease-in-out duration-300;
+		}
+		.active {
+			@apply text-white;
+			&::before {
+				content: "";
+				@apply w-[30%] h-[2px] rounded-sm  absolute -bottom-1 bg-cyan-500 left-1/3;
+				animation: switchTab 0.3s ease-in-out;
+			}
+		}
+	}
+
+	> .carousel_wrapper {
+		> .carousel_info_wrapper {
+			@apply flex items-center justify-between mr-8 border-b pb-1 border-neutral-800;
+			> h6 {
+				@apply text-xl font-bold;
+			}
+		}
+		.arrow_wrapper {
+			@apply flex text-xl gap-1 mt-1;
+		}
+	}
+}
+
+@keyframes switchTab {
+	0% {
+		transform: scaleX(0);
+	}
+	10% {
+		transform: scaleX(8%);
+	}
+	20% {
+		transform: scaleX(16%);
+	}
+	30% {
+		transform: scaleX(24%);
+	}
+	40% {
+		transform: scaleX(30%);
+	}
+}
