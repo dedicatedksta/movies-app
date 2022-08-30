@@ -1,19 +1,33 @@
-import React, { FC, useState } from "react";
+import React, { FC, SetStateAction, useState } from "react";
 import styles from "./Sidebar.module.scss";
 import { CgClapperBoard } from "react-icons/cg";
 import { GiTv } from "react-icons/gi";
 import { BiGroup } from "react-icons/bi";
 
 interface SidebarProps {
-	sidebar_active: string;
+	sidebarActive: string;
+	setSidebarActive: React.Dispatch<SetStateAction<string>>;
 }
 
-const Sidebar: FC<SidebarProps> = ({ sidebar_active }) => {
+const Sidebar: FC<SidebarProps> = ({ sidebarActive, setSidebarActive }) => {
+	console.log(sidebarActive);
 	return (
 		<aside className={styles.sidebar_wrapper}>
-			<CgClapperBoard className={sidebar_active === "movies" ? "acitve" : ""} />
-			<GiTv className={sidebar_active === "shows" ? "acitve" : ""} />
-			<BiGroup className={sidebar_active === "actors" ? "acitve" : ""} />
+			<CgClapperBoard
+				onClick={() => setSidebarActive("movie")}
+				className={
+					sidebarActive === "movie" ? "fill-white" : "fill-neutral-500"
+				}
+			/>
+			<GiTv
+				onClick={() => setSidebarActive("tv")}
+				className={sidebarActive === "tv" ? "fill-white" : "fill-neutral-500"}
+			/>
+			<BiGroup
+				className={
+					sidebarActive === "actors" ? "fill-white" : "fill-neutral-500"
+				}
+			/>
 		</aside>
 	);
 };

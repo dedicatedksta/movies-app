@@ -1,12 +1,12 @@
 .movie_wrapper {
-	@apply mt-6;
+	@apply mt-6 max-w-fit px-6;
 	> .image_wrapper {
 		@apply w-72 h-40 relative hover:scale-105 cursor-pointer transition-all ease-in-out duration-300;
 	}
 	> .text_wrapper {
 		@apply flex flex-col gap-4;
-		> h1 {
-			@apply font-bold text-sm mt-4 cursor-pointer hover:text-cyan-500 transition-all ease-in-out duration-300;
+		> .movie_name {
+			@apply font-bold text-sm mt-4 hover:text-cyan-500 cursor-pointer transition-all ease-in-out duration-300;
 		}
 		> div {
 			@apply flex gap-5 text-xs uppercase text-neutral-500;

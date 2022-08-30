@@ -1,0 +1,43 @@
+
+
+.dot_one{
+  display: inline-block;
+  background-color: #fdba74;
+  width: 4px;
+  height: 4px;
+  transform: translate3d(0);
+  animation: bounce 0.6s infinite alternate;
+  border-radius: 50%;
+}
+.dot_two{
+  display: inline-block;
+  background-color: #fb923c;
+  width: 4px;
+  height: 4px;
+  transform: translate3d(0);
+  animation: bounce 0.6s infinite alternate;
+  border-radius: 50%;
+  animation-delay: 0.2s;
+
+
+}
+.dot_three{
+  display: inline-block;
+  background-color:#f97316;
+  width: 4px;
+  height: 4px;
+  transform: translate3d(0);
+  animation: bounce 0.6s infinite alternate;
+  border-radius: 50%;
+  animation-delay: 0.4s;
+
+
+}
+
+@keyframes bounce{
+  to{
+    width:16px;
+    height: 16px;
+    transform: translate3d(0,-16px,0);
+  }
+}
