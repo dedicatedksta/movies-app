@@ -1,58 +1,80 @@
 import axios from "axios";
 import Image from "next/image";
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
+import { TmbdApiService } from "../../services/TmbdApiService";
 import { IMovie } from "../../types/movie";
 import { ITvShow } from "../../types/tv";
+import { IVideo } from "../../types/video";
+import Modal from "../modal/Modal";
+import Video from "../modal/Video";
 import Button from "../ui/button/Button";
 import Loader from "../ui/loader/Loader";
 import TrailerButton from "../ui/trailer button/TrailerButton";
 import styles from "./Backdrop.module.scss";
 
 interface BackdropProps {
-	movie: IMovie | ITvShow;
+	item: IMovie | ITvShow;
 	genres: string | undefined;
 	sidebarActive: string;
+	loading: boolean;
 }
 
-const Backdrop: FC<BackdropProps> = ({ movie, genres, sidebarActive }) => {
+const Backdrop: FC<BackdropProps> = ({
+	item,
+	genres,
+	sidebarActive,
+	loading,
+}) => {
+	const [videos, setVideos] = useState<IVideo[]>([]);
+	const [modalVisible, setModalVisible] = useState<boolean>(false);
+	console.log(videos);
+
 	useEffect(() => {
-		const getVideo = async () => {
-			const response = await axios.get(
-				`https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`
-			);
-			const data = response.data;
-			console.log(data);
-		};
-		if (movie.id) {
-			getVideo();
+		if (item.id) {
+			getVideos();
 		}
-	}, []);
-	return (
+	}, [item]);
+
+	async function getVideos() {
+		const videos = await TmbdApiService.getVideo(item.id, sidebarActive);
+		setVideos(videos);
+	}
+
+	return loading ? (
+		<div className="h-[50vh] flex justify-center items-center bg-[#0A0A0A]">
+			<Loader />
+		</div>
+	) : (
 		<div className={styles.backdrop_wrapper}>
+			{modalVisible && (
+				<Modal visible={modalVisible} setVisible={setModalVisible}>
+					<Video id={videos[0].key} title={item.title || item.original_name} />
+				</Modal>
+			)}
 			<div className={styles.image_wrapper}>
-				{Object.keys(movie).length !== 0 && (
+				{Object.keys(item).length !== 0 && (
 					// <Image
-					// 	src={`https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`}
+					// 	src={`https://image.tmdb.org/t/p/w1280${item.backdrop_path}`}
 					// 	layout="fill"
 					// />
 					<img
-						src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
+						src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
 						className="object-cover"
 					/>
 				)}
 			</div>
 			<div className={styles.text_wrapper}>
 				<h1>{`${
-					sidebarActive === "movie" ? movie.title : movie.original_name
+					sidebarActive === "movie" ? item.title : item.original_name
 				}`}</h1>
 				<div className={styles.genre_wrapper}>
 					{genres && <span>{genres}</span>}
-					<span>{movie.vote_average}/10</span>
+					<span>{item.vote_average}/10</span>
 				</div>
-				<div className={styles.description}>{movie.overview}</div>
+				<div className={styles.description}>{item.overview}</div>
 				<div className={styles.button_wrapper}>
 					<Button>Learn More</Button>
-					<TrailerButton />
+					<TrailerButton setModalVisible={setModalVisible} />
 				</div>
 			</div>
 		</div>

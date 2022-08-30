@@ -30,5 +30,5 @@ a {
 }
 
 #__next {
-	@apply max-h-screen flex flex-col;
+	@apply max-h-screen flex flex-col overflow-y-hidden;
 }

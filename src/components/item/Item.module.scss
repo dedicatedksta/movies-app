@@ -1,11 +1,11 @@
-.movie_wrapper {
+.item_wrapper {
 	@apply mt-6 max-w-fit px-6;
 	> .image_wrapper {
 		@apply w-72 h-40 relative hover:scale-105 cursor-pointer transition-all ease-in-out duration-300;
 	}
 	> .text_wrapper {
 		@apply flex flex-col gap-4;
-		> .movie_name {
+		> .item_name {
 			@apply font-bold text-sm mt-4 hover:text-cyan-500 cursor-pointer transition-all ease-in-out duration-300;
 		}
 		> div {

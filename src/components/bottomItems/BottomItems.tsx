@@ -1,22 +1,25 @@
 import { FC, SetStateAction, useRef, useState } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
-import { IMovie } from "../../types/movie";
-import Movie from "../movie/Movie";
-import styles from "./BottomMovies.module.scss";
 import Slider from "react-slick";
+import { IMovie } from "../../types/movie";
+import Item from "../item/Item";
+import Loader from "../ui/loader/Loader";
+import styles from "./BottomItems.module.scss";
 
-interface BottomMoviesProps {
-	movies: IMovie[];
+interface BottomItemsProps {
+	items: IMovie[];
 	activeTab: number;
 	setActiveTab: React.Dispatch<SetStateAction<number>>;
 	sidebarActive: string;
+	loading: boolean;
 }
 
-const BottomMovies: FC<BottomMoviesProps> = ({
-	movies,
+const BottomItems: FC<BottomItemsProps> = ({
+	items,
 	activeTab,
 	setActiveTab,
 	sidebarActive,
+	loading,
 }) => {
 	const sliderRef = useRef<Slider>(null);
 	const [currentSlide, setCurrentSlide] = useState<number>(1);
@@ -29,7 +32,6 @@ const BottomMovies: FC<BottomMoviesProps> = ({
 		slidesToScroll: 4,
 		arrows: false,
 	};
-	console.log(currentSlide);
 	const previousSlide = () => {
 		if (currentSlide > 1) {
 			sliderRef.current!.slickPrev();
@@ -38,7 +40,7 @@ const BottomMovies: FC<BottomMoviesProps> = ({
 	};
 
 	const nextSlide = () => {
-		if (currentSlide !== movies.length / 4) {
+		if (currentSlide !== items.length / 4) {
 			sliderRef.current!.slickNext();
 			setCurrentSlide(currentSlide + 1);
 		}
@@ -59,17 +61,19 @@ const BottomMovies: FC<BottomMoviesProps> = ({
 				>
 					Most Popular
 				</span>
-				<span
-					onClick={() => setActiveTab(3)}
-					className={activeTab === 3 ? styles.active : ""}
-				>
-					Now Playing
-				</span>
+				{sidebarActive === "movie" && (
+					<span
+						onClick={() => setActiveTab(3)}
+						className={activeTab === 3 ? styles.active : ""}
+					>
+						Now streaming
+					</span>
+				)}
 				<span
 					onClick={() => setActiveTab(4)}
 					className={activeTab === 4 ? styles.active : ""}
 				>
-					Upcoming
+					{sidebarActive === "movie" ? `upcoming` : `on the air`}
 				</span>
 			</div>
 			<div className={styles.carousel_wrapper}>
@@ -89,7 +93,7 @@ const BottomMovies: FC<BottomMoviesProps> = ({
 						<FiChevronRight
 							className={`
 										${
-											currentSlide === movies.length / 4
+											currentSlide === items.length / 4
 												? "text-neutral-500 "
 												: "text-white-500 hover:text-cyan-500 "
 										}
@@ -98,14 +102,20 @@ const BottomMovies: FC<BottomMoviesProps> = ({
 						/>
 					</div>
 				</div>
-				<Slider ref={sliderRef} {...settings}>
-					{movies.map((movie) => (
-						<Movie key={movie.id} movie={movie} sidebarActive={sidebarActive} />
-					))}
-				</Slider>
+				{loading ? (
+					<div className="flex justify-center items-center h-[25vh]">
+						<Loader />
+					</div>
+				) : (
+					<Slider ref={sliderRef} {...settings}>
+						{items.map((item) => (
+							<Item key={item.id} item={item} sidebarActive={sidebarActive} />
+						))}
+					</Slider>
+				)}
 			</div>
 		</div>
 	);
 };
 
-export default BottomMovies;
+export default BottomItems;

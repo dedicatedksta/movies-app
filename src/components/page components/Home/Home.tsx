@@ -3,7 +3,7 @@ import { TmbdApiService } from "../../../services/TmbdApiService";
 import { IMovie } from "../../../types/movie";
 import { getMovieGenres } from "../../../utils/getGenreList";
 import Backdrop from "../../backdropImage/Backdrop";
-import BottomMovies from "../../bottomMovies/BottomMovies";
+import BottomItems from "../../bottomItems/BottomItems";
 import Loader from "../../ui/loader/Loader";
 import Navbar from "../../ui/navbar/Navbar";
 import Sidebar from "../../ui/sidebar/Sidebar";
@@ -13,9 +13,9 @@ interface HomeProps {
 }
 
 const Home: FC<HomeProps> = () => {
-	const [movies, setMovies] = useState<IMovie[]>([]);
-	const [renderedMovie, setRenderedMovie] = useState<IMovie>(movies[0] || {});
-	const [renderedMovieGenres, setRenderedMovieGenres] = useState<string>();
+	const [items, setItems] = useState<IMovie[]>([]);
+	const [renderedItem, setRenderedItem] = useState<IMovie>(items[0] || {});
+	const [renderedItemGenres, setRenderedItemGenres] = useState<string>();
 	const [loading, setLoading] = useState(false);
 	const [activeTab, setActiveTab] = useState<number>(2);
 	const [sidebarActive, setSidebarActive] = useState("movie");
@@ -23,26 +23,30 @@ const Home: FC<HomeProps> = () => {
 	useEffect(() => {
 		switch (activeTab) {
 			case 1:
-				fetchMovies(TmbdApiService.getTopRatedMovies);
+				fetchItems(TmbdApiService.getTopRated);
 				break;
 			case 2:
-				fetchMovies(TmbdApiService.getPopularMovies);
+				fetchItems(TmbdApiService.getPopular);
 				break;
 			case 3:
-				fetchMovies(TmbdApiService.getStreamingMovies);
+				fetchItems(TmbdApiService.getStreaming);
 				break;
 			case 4:
-				fetchMovies(TmbdApiService.getUpcomingMovies);
+				if (sidebarActive === "movie") {
+					fetchItems(TmbdApiService.getUpcoming);
+				} else {
+					fetchItems(TmbdApiService.getOnTheAir);
+				}
 				break;
 		}
 	}, [activeTab, sidebarActive]);
 
-	async function fetchMovies(service: (type: string) => Promise<IMovie[]>) {
+	async function fetchItems(service: (type: string) => Promise<IMovie[]>) {
 		setLoading(true);
-		const movies = await service(sidebarActive);
-		setMovies(movies);
-		setRenderedMovie(movies[0]);
-		setRenderedMovieGenres(getMovieGenres(movies[0].genre_ids));
+		const Items = await service(sidebarActive);
+		setItems(Items);
+		setRenderedItem(Items[0]);
+		setRenderedItemGenres(getMovieGenres(Items[0].genre_ids));
 		setLoading(false);
 	}
 	return (
@@ -52,25 +56,21 @@ const Home: FC<HomeProps> = () => {
 				sidebarActive={sidebarActive}
 				setSidebarActive={setSidebarActive}
 			/>
-			{!loading ? (
-				<main className="ml-28 max-w-[75vw] h-[100vh] relative">
-					<Backdrop
-						movie={renderedMovie}
-						genres={renderedMovieGenres}
-						sidebarActive={sidebarActive}
-					/>
-					<BottomMovies
-						movies={movies}
-						activeTab={activeTab}
-						setActiveTab={setActiveTab}
-						sidebarActive={sidebarActive}
-					/>
-				</main>
-			) : (
-				<div className="h-screen flex items-center justify-center bg-[#0A0A0A]">
-					<Loader />
-				</div>
-			)}
+			<main className="ml-28 max-w-[75vw] h-[100vh] relative">
+				<Backdrop
+					loading={loading}
+					item={renderedItem}
+					genres={renderedItemGenres}
+					sidebarActive={sidebarActive}
+				/>
+				<BottomItems
+					loading={loading}
+					items={items}
+					activeTab={activeTab}
+					setActiveTab={setActiveTab}
+					sidebarActive={sidebarActive}
+				/>
+			</main>
 		</>
 	);
 };

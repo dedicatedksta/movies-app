@@ -3,18 +3,18 @@ import React, { FC } from "react";
 import { IMovie } from "../../types/movie";
 import { ITvShow } from "../../types/tv";
 import { getMovieGenres } from "../../utils/getGenreList";
-import styles from "./Movie.module.scss";
+import styles from "./Item.module.scss";
 
-interface MovieProps {
-	movie: IMovie | ITvShow;
+interface ItemProps {
+	item: IMovie | ITvShow;
 	sidebarActive: string;
 }
 
-const Movie: FC<MovieProps> = ({ movie, sidebarActive }) => {
-	const genres = getMovieGenres(movie.genre_ids);
+const Item: FC<ItemProps> = ({ item, sidebarActive }) => {
+	const genres = getMovieGenres(item.genre_ids);
 	return (
-		<div className={styles.movie_wrapper}>
-			{Object.keys(movie).length !== 0 && (
+		<div className={styles.item_wrapper}>
+			{Object.keys(item).length !== 0 && (
 				<div className={styles.image_wrapper}>
 					{/* <Image
 						src={`https://image.tmdb.org/t/p/w300${movie.backdrop_path}`}
@@ -22,23 +22,23 @@ const Movie: FC<MovieProps> = ({ movie, sidebarActive }) => {
 						className="object-cover"
 					/> */}
 					<img
-						src={`https://image.tmdb.org/t/p/w300${movie.backdrop_path}`}
+						src={`https://image.tmdb.org/t/p/w300${item.backdrop_path}`}
 						className="object-cover"
 						alt=""
 					/>
 				</div>
 			)}
 			<div className={styles.text_wrapper}>
-				<h1 className={styles.movie_name}>{`${
-					sidebarActive === "movie" ? movie.title : movie.original_name
+				<h1 className={styles.item_name}>{`${
+					sidebarActive === "movie" ? item.title : item.original_name
 				}`}</h1>
 				<div>
 					<span>{genres}</span>
-					<span>{movie.vote_average}</span>
+					<span>{item.vote_average}</span>
 				</div>
 			</div>
 		</div>
 	);
 };
 
-export default Movie;
+export default Item;
