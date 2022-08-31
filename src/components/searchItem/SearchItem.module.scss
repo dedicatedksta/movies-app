@@ -1,0 +1,19 @@
+.searchitem_wrapper {
+	@apply w-full flex my-5 cursor-pointer ml-4;
+	> img {
+		@apply w-16 mr-4 hover:scale-110 transition-all ease-in-out duration-300 rounded-lg;
+	}
+
+	> .info_wrapper {
+		@apply mt-4 max-w-[70%];
+		> .topinfo_wrapper {
+			@apply flex text-base;
+			> .item_title {
+				@apply hover:text-cyan-500 transition-all  mr-2 ease-in-out duration-300;
+			}
+		}
+		> .bottominfo_wrapper {
+			@apply text-xs mt-1 text-neutral-400;
+		}
+	}
+}

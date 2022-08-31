@@ -5,4 +5,5 @@ export interface IVideo {
 	site: string;
 	size: number;
 	type: string;
+	poster_path: string | null;
 }

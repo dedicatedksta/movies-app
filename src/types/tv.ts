@@ -6,4 +6,5 @@ export interface ITvShow {
 	overview: string;
 	vote_average: number;
 	title: undefined;
+	poster_path: string | null;
 }

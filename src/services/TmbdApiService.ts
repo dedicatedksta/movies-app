@@ -47,7 +47,7 @@ export class TmbdApiService {
 
 	static async getVideo(id: number, type?: string) {
 		const response = await axios.get(
-			`https://api.themoviedb.org/3/${type}/${id}/videos?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`
+			`${TmbdApiService.API_URL}/${type}/${id}/videos?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`
 		);
 		const data = response.data;
 		const filteredVideos = data.results
@@ -55,5 +55,13 @@ export class TmbdApiService {
 			.filter((r: any) => r.official);
 
 		return filteredVideos;
+	}
+
+	static async getSearchedItems(query: string) {
+		const response = await axios.get(
+			`${TmbdApiService.API_URL}/search/multi?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&query=${query}&page=1&include_adult=true`
+		);
+		const data = await response.data;
+		return data.results;
 	}
 }

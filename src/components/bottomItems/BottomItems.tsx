@@ -28,8 +28,8 @@ const BottomItems: FC<BottomItemsProps> = ({
 		dots: false,
 		infinite: false,
 		speed: 500,
-		slidesToShow: 4,
-		slidesToScroll: 4,
+		slidesToShow: 5,
+		slidesToScroll: 5,
 		arrows: false,
 	};
 	const previousSlide = () => {
@@ -40,7 +40,7 @@ const BottomItems: FC<BottomItemsProps> = ({
 	};
 
 	const nextSlide = () => {
-		if (currentSlide !== items.length / 4) {
+		if (currentSlide !== items.length / settings.slidesToScroll) {
 			sliderRef.current!.slickNext();
 			setCurrentSlide(currentSlide + 1);
 		}
@@ -93,7 +93,7 @@ const BottomItems: FC<BottomItemsProps> = ({
 						<FiChevronRight
 							className={`
 										${
-											currentSlide === items.length / 4
+											currentSlide === items.length / settings.slidesToScroll
 												? "text-neutral-500 "
 												: "text-white-500 hover:text-cyan-500 "
 										}

@@ -2,7 +2,7 @@ import Image from "next/image";
 import React, { FC } from "react";
 import { IMovie } from "../../types/movie";
 import { ITvShow } from "../../types/tv";
-import { getMovieGenres } from "../../utils/getGenreList";
+import { getMovieGenres, getTvGenres } from "../../utils/getGenreList";
 import styles from "./Item.module.scss";
 
 interface ItemProps {
@@ -11,7 +11,7 @@ interface ItemProps {
 }
 
 const Item: FC<ItemProps> = ({ item, sidebarActive }) => {
-	const genres = getMovieGenres(item.genre_ids);
+	const genres = getMovieGenres(item.genre_ids) || getTvGenres(item.genre_ids);
 	return (
 		<div className={styles.item_wrapper}>
 			{Object.keys(item).length !== 0 && (

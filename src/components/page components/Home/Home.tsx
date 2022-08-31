@@ -56,7 +56,7 @@ const Home: FC<HomeProps> = () => {
 				sidebarActive={sidebarActive}
 				setSidebarActive={setSidebarActive}
 			/>
-			<main className="ml-28 max-w-[75vw] h-[100vh] relative">
+			<main className="ml-28 max-w-full h-[100vh] relative">
 				<Backdrop
 					loading={loading}
 					item={renderedItem}
