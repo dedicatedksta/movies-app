@@ -7,22 +7,31 @@ import styles from "./Sidebar.module.scss";
 interface SidebarProps {
 	sidebarActive: string;
 	setSidebarActive: React.Dispatch<SetStateAction<string>>;
+	setActiveTab: React.Dispatch<SetStateAction<number>>;
 }
 
-const Sidebar: FC<SidebarProps> = ({ sidebarActive, setSidebarActive }) => {
+const Sidebar: FC<SidebarProps> = ({
+	sidebarActive,
+	setSidebarActive,
+	setActiveTab,
+}) => {
 	return (
 		<aside className={styles.sidebar_wrapper}>
 			<CgClapperBoard
-				onClick={() => setSidebarActive("movie")}
-				className={sidebarActive==='movie'?styles.active:""}
+				onClick={() => {
+					setSidebarActive("movie");
+					setActiveTab(2);
+				}}
+				className={sidebarActive === "movie" ? styles.active : ""}
 			/>
 			<GiTv
-				onClick={() => setSidebarActive("tv")}
-				className={sidebarActive==='tv'?styles.active:""}
+				onClick={() => {
+					setSidebarActive("tv");
+					setActiveTab(2);
+				}}
+				className={sidebarActive === "tv" ? styles.active : ""}
 			/>
-			<BiGroup
-
-			/>
+			<BiGroup />
 		</aside>
 	);
 };

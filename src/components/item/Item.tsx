@@ -1,5 +1,6 @@
 import Image from "next/image";
-import React, { FC } from "react";
+import Link from "next/link";
+import React, { FC, SetStateAction } from "react";
 import { IMovie } from "../../types/movie";
 import { ITvShow } from "../../types/tv";
 import { getMovieGenres, getTvGenres } from "../../utils/getGenreList";
@@ -21,17 +22,21 @@ const Item: FC<ItemProps> = ({ item, sidebarActive }) => {
 						layout="fill"
 						className="object-cover"
 					/> */}
-					<img
-						src={`https://image.tmdb.org/t/p/w300${item.backdrop_path}`}
-						className="object-cover"
-						alt=""
-					/>
+					<Link href={`/${item.id}`}>
+						<img
+							src={`https://image.tmdb.org/t/p/w300${item.backdrop_path}`}
+							className="object-cover"
+							alt=""
+						/>
+					</Link>
 				</div>
 			)}
 			<div className={styles.text_wrapper}>
-				<h1 className={styles.item_name}>{`${
-					sidebarActive === "movie" ? item.title : item.original_name
-				}`}</h1>
+				<Link href={`/${item.id}`}>
+					<h1 className={styles.item_name}>{`${
+						sidebarActive === "movie" ? item.title : item.original_name
+					}`}</h1>
+				</Link>
 				<div>
 					<span>{genres}</span>
 					<span>{item.vote_average}</span>

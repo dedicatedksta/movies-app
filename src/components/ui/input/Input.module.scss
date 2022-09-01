@@ -2,17 +2,17 @@
 	@apply bg-white rounded-2xl h-9 flex w-[480px] items-center relative;
 
 	> input {
-		@apply pl-4 border-none outline-none bg-transparent h-full w-full text-black;
+		@apply pl-9 border-none outline-none bg-transparent h-full w-full text-black;
 		&::placeholder {
 			@apply text-gray-500;
 		}
 	}
 
-	> .searchIcon {
-		@apply fill-gray-500 absolute right-4 font-bold text-xl pointer-events-none;
+	.searchIcon {
+		@apply fill-gray-500 absolute left-2 font-bold text-xl pointer-events-none;
 	}
-	> .closeIcon {
-		@apply absolute text-neutral-500 hover:text-black right-3 text-3xl cursor-pointer transition-all ease-out duration-300;
+	.closeIcon {
+		@apply absolute max-w-fit text-neutral-500 hover:text-black right-2 text-3xl cursor-pointer transition-all ease-out duration-300;
 	}
 }
 

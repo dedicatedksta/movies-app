@@ -1,5 +1,6 @@
 import axios from "axios";
 import Image from "next/image";
+import Link from "next/link";
 import { FC, useEffect, useState } from "react";
 import { TmbdApiService } from "../../services/TmbdApiService";
 import { IMovie } from "../../types/movie";
@@ -73,7 +74,9 @@ const Backdrop: FC<BackdropProps> = ({
 				</div>
 				<div className={styles.description}>{item.overview}</div>
 				<div className={styles.button_wrapper}>
-					<Button>Learn More</Button>
+					<Link href={`/${item.id}`}>
+						<a>Learn More</a>
+					</Link>
 					<TrailerButton setModalVisible={setModalVisible} />
 				</div>
 			</div>

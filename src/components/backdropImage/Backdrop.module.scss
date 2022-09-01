@@ -29,4 +29,7 @@
 
 .button_wrapper {
 	@apply flex gap-6;
+	> a {
+		@apply bg-cyan-500 border-2 border-cyan-500 px-5 py-[6px] hover:bg-transparent hover:scale-105 transition-all ease-out duration-300 rounded-3xl;
+	}
 }

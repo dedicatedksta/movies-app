@@ -1,4 +1,4 @@
-import { FC, SetStateAction, useRef, useState } from "react";
+import { FC, SetStateAction, useEffect, useRef, useState } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import Slider from "react-slick";
 import { IMovie } from "../../types/movie";
@@ -23,6 +23,10 @@ const BottomItems: FC<BottomItemsProps> = ({
 }) => {
 	const sliderRef = useRef<Slider>(null);
 	const [currentSlide, setCurrentSlide] = useState<number>(1);
+
+	useEffect(() => {
+		setCurrentSlide(1);
+	}, [items]);
 
 	const settings = {
 		dots: false,

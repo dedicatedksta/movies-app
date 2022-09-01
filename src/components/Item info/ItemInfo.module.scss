@@ -1,0 +1,17 @@
+.iteminfo_wrapper {
+	@apply flex gap-8 my-4;
+}
+
+.rating_wrapper {
+	@apply flex items-center text-lg;
+	> svg {
+		@apply fill-yellow-400 mr-1;
+	}
+}
+
+.description_wrapper {
+	@apply flex items-center text-gray-400;
+	> div {
+		@apply flex items-center;
+	}
+}

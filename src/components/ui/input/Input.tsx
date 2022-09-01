@@ -1,16 +1,13 @@
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useCallback, useState } from "react";
 import { BsSearch } from "react-icons/bs";
+import { VscClose } from "react-icons/vsc";
 import { TmbdApiService } from "../../../services/TmbdApiService";
 import { IMovie } from "../../../types/movie";
 import { ITvShow } from "../../../types/tv";
-import { getMovieGenres, getTvGenres } from "../../../utils/getGenreList";
-import Item from "../../item/Item";
-import Rating from "../../rating/Rating";
 import SearchItem from "../../searchItem/SearchItem";
 import Loader from "../loader/Loader";
 import styles from "./Input.module.scss";
-import { VscClose } from "react-icons/vsc";
 
 const Input = () => {
 	const [value, setValue] = useState<string>("");
@@ -65,7 +62,11 @@ const Input = () => {
 										{searchedItems.map(
 											(item) =>
 												item.poster_path && (
-													<SearchItem key={item.id} item={item} />
+													<SearchItem
+														key={item.id}
+														item={item}
+														setValue={setValue}
+													/>
 												)
 										)}
 									</div>
@@ -87,11 +88,19 @@ const Input = () => {
 				placeholder="Search movies, tv shows..."
 				type="text"
 			/>
-			{!value ? (
-				<BsSearch className={styles.searchIcon} />
-			) : (
-				<VscClose className={styles.closeIcon} onClick={() => setValue("")} />
-			)}
+			<BsSearch className={styles.searchIcon} />
+			<AnimatePresence>
+				{value && (
+					<motion.div
+						initial={{ scaleX: 0 }}
+						animate={{ scaleX: 1 }}
+						exit={{ scaleX: 0 }}
+						className={styles.closeIcon}
+					>
+						<VscClose onClick={() => setValue("")} />
+					</motion.div>
+				)}
+			</AnimatePresence>
 		</div>
 	);
 };

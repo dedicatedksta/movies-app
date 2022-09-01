@@ -19,7 +19,7 @@ const Home: FC<HomeProps> = () => {
 	const [loading, setLoading] = useState(false);
 	const [activeTab, setActiveTab] = useState<number>(2);
 	const [sidebarActive, setSidebarActive] = useState("movie");
-
+	console.log(items);
 	useEffect(() => {
 		switch (activeTab) {
 			case 1:
@@ -51,10 +51,11 @@ const Home: FC<HomeProps> = () => {
 	}
 	return (
 		<>
-			<Navbar />
+			<Navbar transparent={false} />
 			<Sidebar
 				sidebarActive={sidebarActive}
 				setSidebarActive={setSidebarActive}
+				setActiveTab={setActiveTab}
 			/>
 			<main className="ml-28 max-w-full h-[100vh] relative">
 				<Backdrop
