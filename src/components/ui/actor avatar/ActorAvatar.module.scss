@@ -1,0 +1,9 @@
+.actor_wrapper {
+	@apply flex flex-col items-center cursor-pointer max-w-[65px];
+	> img {
+		@apply w-14 h-20 rounded-md mb-4 hover:scale-105 transition-all ease-out duration-300;
+	}
+	> div {
+		@apply w-full text-xs text-center hover:text-cyan-500 transition-all ease-out duration-300;
+	}
+}

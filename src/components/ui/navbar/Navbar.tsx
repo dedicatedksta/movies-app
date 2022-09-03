@@ -12,9 +12,7 @@ const Navbar: FC<{ transparent: boolean }> = ({ transparent }) => {
 		>
 			<div className={styles.navbar_left}>
 				<Link href={`/`}>
-					<h1 className="cursor-pointer hover:text-cyan-400 transition-all ease-in-out duration-300">
-						IMDb
-					</h1>
+					<h1>IMDb</h1>
 				</Link>
 				<Input />
 			</div>

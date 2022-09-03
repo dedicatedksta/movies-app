@@ -3,14 +3,14 @@
 }
 
 .info_wrapper {
-	@apply z-30 text-white absolute bottom-24 bg-[rgba(0,0,0,0.7)]  mx-40 py-6 px-8 flex gap-48;
+	@apply z-30 text-white absolute bottom-24 bg-[rgba(0,0,0,0.7)]   mx-40 py-6 px-8 flex gap-48;
 	> div > h1 {
 		@apply text-5xl font-bold;
 	}
 }
 
 .view_all {
-	@apply flex items-center text-center justify-center cursor-pointer w-14 h-20 object-cover text-sm rounded-md  bg-[rgba(255,255,255,0.3)] text-gray-300 hover:text-white transition-all ease-in-out duration-200;
+	@apply flex items-center text-center justify-center cursor-pointer w-14 h-20 object-cover text-sm rounded-md  bg-[rgba(255,255,255,0.3)] text-gray-300 hover:text-white hover:bg-[rgba(255,255,255,0.4)] transition-all ease-in-out duration-200;
 }
 
 .actors_wrapper {
@@ -18,16 +18,30 @@
 	> div {
 		@apply flex gap-4;
 	}
-	> h3 {
-		@apply text-3xl mb-4 ml-4;
+}
+
+.full_actor_list {
+	@apply box-content px-8 rounded-lg flex flex-wrap max-w-lg gap-5 justify-center max-h-96 overflow-auto py-8 overflow-x-hidden bg-[rgba(0,0,0,0.6)];
+}
+
+.full_actor_list::-webkit-scrollbar {
+	width: 12px;
+}
+
+.full_actor_list::-webkit-scrollbar-thumb {
+	@apply bg-cyan-600 rounded-xl cursor-pointer  hover:bg-cyan-500 transition-all ease-in-out duration-300;
+}
+
+.right_side_info_wrapper {
+	@apply max-w-2xl;
+	h3 {
+		@apply text-3xl mb-4 ml-2;
 	}
-	.actor_wrapper {
-		@apply flex flex-col items-center cursor-pointer;
-		> img {
-			@apply w-14 h-20 rounded-md mb-2 hover:scale-105 transition-all ease-out duration-300;
-		}
-		> div {
-			@apply w-full text-xs text-center hover:text-cyan-500 transition-all ease-out duration-300;
-		}
+}
+
+.arrow_wrapper {
+	@apply w-full flex justify-center text-xl mb-2;
+	> svg {
+		@apply cursor-pointer;
 	}
 }

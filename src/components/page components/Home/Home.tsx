@@ -23,27 +23,30 @@ const Home: FC<HomeProps> = () => {
 	useEffect(() => {
 		switch (activeTab) {
 			case 1:
-				fetchItems(TmbdApiService.getTopRated);
+				fetchItems(TmbdApiService.getItems, "top_rated");
 				break;
 			case 2:
-				fetchItems(TmbdApiService.getPopular);
+				fetchItems(TmbdApiService.getItems, "popular");
 				break;
 			case 3:
-				fetchItems(TmbdApiService.getStreaming);
+				fetchItems(TmbdApiService.getItems, "now_playing");
 				break;
 			case 4:
 				if (sidebarActive === "movie") {
-					fetchItems(TmbdApiService.getUpcoming);
+					fetchItems(TmbdApiService.getItems, "upcoming");
 				} else {
-					fetchItems(TmbdApiService.getOnTheAir);
+					fetchItems(TmbdApiService.getItems, "on_the_air");
 				}
 				break;
 		}
 	}, [activeTab, sidebarActive]);
 
-	async function fetchItems(service: (type: string) => Promise<IMovie[]>) {
+	async function fetchItems(
+		service: (type: string, category: string) => Promise<IMovie[]>,
+		category: string
+	) {
 		setLoading(true);
-		const Items = await service(sidebarActive);
+		const Items = await service(sidebarActive, category);
 		setItems(Items);
 		setRenderedItem(Items[0]);
 		setRenderedItemGenres(getMovieGenres(Items[0].genre_ids));
