@@ -27,6 +27,8 @@ export interface IMovie {
 }
 
 export interface IMovieDetails extends IMovie {
+	number_of_seasons?: number;
+	first_air_date?: string;
 	belongs_to_collection: null | ICollection;
 	budget: number;
 	genres: IGenre[];

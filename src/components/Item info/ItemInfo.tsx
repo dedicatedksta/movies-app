@@ -2,11 +2,12 @@ import React, { FC } from "react";
 import { AiFillStar } from "react-icons/ai";
 import { BsDot } from "react-icons/bs";
 import { IMovieDetails } from "../../types/movie";
+import { ITvShow } from "../../types/tv";
 import { getFormattedTime } from "../../utils/getFormattedTime";
 import Rating from "../rating/Rating";
 import styles from "./ItemInfo.module.scss";
 
-const ItemInfo: FC<{ item: IMovieDetails }> = ({ item }) => {
+const ItemInfo: FC<{ item: IMovieDetails | ITvShow }> = ({ item }) => {
 	const genres = item?.genres.map((genre) => genre.name);
 
 	return (
@@ -17,7 +18,13 @@ const ItemInfo: FC<{ item: IMovieDetails }> = ({ item }) => {
 			</div>
 			<div className={styles.description_wrapper}>
 				<div className="ml-2">
-					{item.runtime && <span>{getFormattedTime(item.runtime)}</span>}
+					{(item.runtime || item.number_of_seasons) && (
+						<span>
+							{item.runtime
+								? getFormattedTime(item.runtime)
+								: `${item.number_of_seasons} Seasons`}
+						</span>
+					)}
 				</div>
 
 				{genres && (
@@ -25,10 +32,13 @@ const ItemInfo: FC<{ item: IMovieDetails }> = ({ item }) => {
 						<BsDot className="mx-1 text-2xl" /> {genres.join(", ")}
 					</div>
 				)}
-				{item.release_date && (
+				{(item.release_date || item.first_air_date) && (
 					<div>
 						<BsDot className="mx-1 text-2xl" />
-						<span>{item.release_date.split("-")[0]}</span>
+						<span>
+							{item.release_date?.split("-")[0] ||
+								item.first_air_date?.split("-")[0]}
+						</span>
 					</div>
 				)}
 			</div>

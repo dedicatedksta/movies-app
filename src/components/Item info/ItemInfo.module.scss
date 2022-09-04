@@ -10,7 +10,7 @@
 }
 
 .description_wrapper {
-	@apply flex items-center text-gray-400;
+	@apply flex items-center ml-8 text-base whitespace-nowrap text-gray-400;
 	> div {
 		@apply flex items-center;
 	}

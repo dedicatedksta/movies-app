@@ -1,3 +1,5 @@
+import { IGenre } from "./movie";
+
 export interface ITvShow {
 	media_type: string;
 	original_name: string;
@@ -8,4 +10,9 @@ export interface ITvShow {
 	vote_average: number;
 	title: undefined;
 	poster_path: string | null;
+	number_of_seasons: number;
+	genres: IGenre[];
+	runtime?: number;
+	release_date?: string;
+	first_air_date: string;
 }
