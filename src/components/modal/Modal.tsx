@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import React, { FC, PropsWithChildren, SetStateAction } from "react";
+import React, { FC, SetStateAction } from "react";
 import { VscChromeClose } from "react-icons/vsc";
 
 interface ModalProps {

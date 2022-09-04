@@ -4,11 +4,12 @@ import ItemP from "../src/components/page components/Item Page/ItemP";
 import Navbar from "../src/components/ui/navbar/Navbar";
 
 const ItemPage = () => {
-	const { id } = useRouter().query;
+	const slug = useRouter().query.slug;
+	if (!slug) return <div>nothing was found</div>;
 	return (
 		<>
 			<Navbar transparent={true} />
-			<ItemP itemId={id} />
+			<ItemP itemType={slug[0]} itemId={slug[1]} />
 		</>
 	);
 };

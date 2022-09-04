@@ -1,5 +1,3 @@
-import axios from "axios";
-import Image from "next/image";
 import Link from "next/link";
 import { FC, useEffect, useState } from "react";
 import { TmbdApiService } from "../../services/TmbdApiService";
@@ -8,7 +6,6 @@ import { ITvShow } from "../../types/tv";
 import { IVideo } from "../../types/video";
 import Modal from "../modal/Modal";
 import Video from "../modal/Video";
-import Button from "../ui/button/Button";
 import Loader from "../ui/loader/Loader";
 import TrailerButton from "../ui/trailer button/TrailerButton";
 import styles from "./Backdrop.module.scss";
@@ -28,7 +25,6 @@ const Backdrop: FC<BackdropProps> = ({
 }) => {
 	const [videos, setVideos] = useState<IVideo[]>([]);
 	const [modalVisible, setModalVisible] = useState<boolean>(false);
-	console.log(videos);
 
 	useEffect(() => {
 		if (item.id) {

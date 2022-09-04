@@ -33,25 +33,26 @@ export class TmbdApiService {
 		return data.results;
 	}
 
-	static async getItem(id: string | string[] | undefined) {
+	static async getItem(id: string | string[] | undefined, type: string) {
 		const response = await axios.get(
-			`${TmbdApiService.API_URL}/movie/${id}?api_key=${TmbdApiService.API_KEY}&language=en-US`
+			`${TmbdApiService.API_URL}/${type}/${id}?api_key=${TmbdApiService.API_KEY}&language=en-US`
 		);
 		const data = await response.data;
 		return data;
 	}
 
-	static async getActors(id: string | string[] | undefined) {
+	static async getActors(id: string | string[] | undefined, type: string) {
 		const response = await axios.get(
-			`${TmbdApiService.API_URL}/movie/${id}/credits?api_key=${TmbdApiService.API_KEY}&language=en-US`
+			`${TmbdApiService.API_URL}/${type}/${id}/credits?api_key=${TmbdApiService.API_KEY}&language=en-US`
 		);
 		const data = await response.data;
-		return data.cast;
+		console.log(data);
+		return data.cast.length > 0 ? data.cast : data.crew;
 	}
 
-	static async getSimilar(id: string | string[] | undefined) {
+	static async getSimilar(id: string | string[] | undefined, type: string) {
 		const response = await axios.get(
-			`${TmbdApiService.API_URL}/movie/${id}/similar?api_key=${TmbdApiService.API_KEY}&language=en-US`
+			`${TmbdApiService.API_URL}/${type}/${id}/similar?api_key=${TmbdApiService.API_KEY}&language=en-US`
 		);
 		const data = await response.data;
 		return data.results;

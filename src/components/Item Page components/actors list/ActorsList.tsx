@@ -7,11 +7,11 @@ interface ActorsListProps {
 	actors: IPerson[];
 	handleClick: () => void;
 }
-
 const ActorsList: FC<ActorsListProps> = ({ actors, handleClick }) => {
+	console.log(actors);
 	return (
 		<div className={styles.actors_wrapper}>
-			<h3>Actors</h3>
+			<h3>Cast</h3>
 
 			<div>
 				{actors?.slice(0, 6).map((actor) => (

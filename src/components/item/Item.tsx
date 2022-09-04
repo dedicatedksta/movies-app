@@ -12,6 +12,7 @@ interface ItemProps {
 
 const Item: FC<ItemProps> = ({ item, sidebarActive }) => {
 	const genres = getMovieGenres(item.genre_ids) || getTvGenres(item.genre_ids);
+	console.log(`/${sidebarActive}/${item.id}`);
 	return (
 		<div className={styles.item_wrapper}>
 			{Object.keys(item).length !== 0 && (
@@ -21,7 +22,7 @@ const Item: FC<ItemProps> = ({ item, sidebarActive }) => {
 						layout="fill"
 						className="object-cover"
 					/> */}
-					<Link href={`/${item.id}`}>
+					<Link href={`/${sidebarActive}/${item.id}`}>
 						<img
 							src={`https://image.tmdb.org/t/p/w300${item.backdrop_path}`}
 							className="object-cover"
@@ -31,7 +32,7 @@ const Item: FC<ItemProps> = ({ item, sidebarActive }) => {
 				</div>
 			)}
 			<div className={styles.text_wrapper}>
-				<Link href={`/${item.id}`}>
+				<Link href={`/${sidebarActive}/${item.id}`}>
 					<h1 className={styles.item_name}>{`${
 						sidebarActive === "movie" ? item.title : item.original_name
 					}`}</h1>

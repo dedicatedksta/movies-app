@@ -24,7 +24,6 @@ const BottomItems: FC<BottomItemsProps> = ({
 }) => {
 	const sliderRef = useRef<Slider>(null);
 	const [currentSlide, setCurrentSlide] = useState<number>(1);
-
 	useEffect(() => {
 		setCurrentSlide(1);
 	}, [items]);

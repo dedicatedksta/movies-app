@@ -5,7 +5,7 @@ import { IPerson } from "../../../types/person";
 import { IVideo } from "../../../types/video";
 import ActorsList from "../../Item Page components/actors list/ActorsList";
 import LeftInfo from "../../Item Page components/left info/LeftInfo";
-import SimilarMovies from "../../Item Page components/similar movies/SimilarMovies";
+import SimilarItems from "../../Item Page components/similar movies/SimilarItems";
 import Modal from "../../modal/Modal";
 import Video from "../../modal/Video";
 import ActorAvatar from "../../ui/actor avatar/ActorAvatar";
@@ -13,10 +13,11 @@ import Loader from "../../ui/loader/Loader";
 import styles from "./ItemP.module.scss";
 
 interface ItemPProps {
+	itemType: string;
 	itemId: string | string[] | undefined;
 }
 
-const ItemP: FC<ItemPProps> = ({ itemId }) => {
+const ItemP: FC<ItemPProps> = ({ itemType, itemId }) => {
 	const [loading, setLoading] = useState(false);
 	const [item, setItem] = useState<IMovieDetails>();
 	const [actors, setActors] = useState<IPerson[]>();
@@ -24,34 +25,30 @@ const ItemP: FC<ItemPProps> = ({ itemId }) => {
 	const [videos, setVideos] = useState<IVideo[]>([]);
 	const [actorModalVisible, setActorModalVisible] = useState(false);
 	const [similar, setSimialar] = useState<IMovie[]>([]);
-	console.log(actors);
-
+	console.log(item);
 	useEffect(() => {
 		if (itemId) {
 			fetchItem();
 		}
-	}, [itemId]);
+	}, [itemId, itemType]);
 
 	const fetchItem = async () => {
 		setLoading(true);
-		const item = await TmbdApiService.getItem(itemId);
-		const cast: IPerson[] = await TmbdApiService.getActors(itemId);
-		const actors = cast.filter(
-			(c) => c.known_for_department === "Acting" && c.profile_path
-		);
-		const videos = await TmbdApiService.getVideo(item.id, "movie");
-		const similar = await TmbdApiService.getSimilar(item.id);
+		const item = await TmbdApiService.getItem(itemId, itemType);
+		const cast: IPerson[] = await TmbdApiService.getActors(itemId, itemType);
+		console.log(cast);
+		const filteredCast = cast.filter((c) => c.profile_path);
+		const videos = await TmbdApiService.getVideo(item.id, itemType);
+		const similar = await TmbdApiService.getSimilar(item.id, itemType);
 		setItem(item);
 		setVideos(videos);
-		setActors(actors);
+		setActors(filteredCast);
 		setSimialar(similar);
 		setLoading(false);
 	};
 	const handleClick = () => {
 		setActorModalVisible(true);
 	};
-
-	console.log(similar);
 	return (
 		<div
 			className={`h-screen  ${
@@ -96,13 +93,14 @@ const ItemP: FC<ItemPProps> = ({ itemId }) => {
 						/>
 						<div className={styles.info_wrapper}>
 							<LeftInfo
+								itemType={itemType}
 								item={item}
 								videos={videos}
 								setVideoModalVisible={setVideoModalVisible}
 							/>
 
 							<div className={styles.right_side_info_wrapper}>
-								<SimilarMovies similar={similar} />
+								<SimilarItems itemType={itemType} similar={similar} />
 								{actors && (
 									<ActorsList actors={actors} handleClick={handleClick} />
 								)}

@@ -4,7 +4,6 @@ import { IMovie } from "../../../types/movie";
 import { getMovieGenres } from "../../../utils/getGenreList";
 import Backdrop from "../../backdropImage/Backdrop";
 import BottomItems from "../../bottomItems/BottomItems";
-import Loader from "../../ui/loader/Loader";
 import Navbar from "../../ui/navbar/Navbar";
 import Sidebar from "../../ui/sidebar/Sidebar";
 
@@ -19,7 +18,6 @@ const Home: FC<HomeProps> = () => {
 	const [loading, setLoading] = useState(false);
 	const [activeTab, setActiveTab] = useState<number>(2);
 	const [sidebarActive, setSidebarActive] = useState("movie");
-	console.log(items);
 	useEffect(() => {
 		switch (activeTab) {
 			case 1:

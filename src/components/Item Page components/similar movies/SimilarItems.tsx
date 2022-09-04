@@ -2,15 +2,17 @@ import { FC, useRef, useState } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import Slider from "react-slick";
 import { IMovie } from "../../../types/movie";
+import { ITvShow } from "../../../types/tv";
 import SliderHandler from "../../../utils/handleSlides";
-import SimilarMovie from "../../ui/similar movie/SimilarMovie";
-import styles from "./SimilarMovies.module.scss";
+import SimilarItem from "../../ui/similar items/SimilarItem";
+import styles from "./SimilarItems.module.scss";
 
-interface SimilarMoviesProps {
-	similar: IMovie[];
+interface SimilarItemsProps {
+	similar: IMovie[] | ITvShow[];
+	itemType: string;
 }
 
-const SimilarMovies: FC<SimilarMoviesProps> = ({ similar }) => {
+const SimilarItems: FC<SimilarItemsProps> = ({ similar, itemType }) => {
 	const sliderRef = useRef<Slider>(null);
 	const [currentSlide, setCurrentSlide] = useState<number>(1);
 	const settings = {
@@ -31,11 +33,11 @@ const SimilarMovies: FC<SimilarMoviesProps> = ({ similar }) => {
 
 	return (
 		<div className="pt-6">
-			<h3>Similar Movies</h3>
+			<h3>{itemType === "tv" ? "Similar Shows" : "Similar Movies"}</h3>
 			{similar && (
 				<Slider ref={sliderRef} {...settings}>
 					{similar?.map((sim) => (
-						<SimilarMovie key={sim.id} movie={sim} />
+						<SimilarItem key={sim.id} itemType={itemType} item={sim} />
 					))}
 				</Slider>
 			)}
@@ -66,4 +68,4 @@ const SimilarMovies: FC<SimilarMoviesProps> = ({ similar }) => {
 	);
 };
 
-export default SimilarMovies;
+export default SimilarItems;
