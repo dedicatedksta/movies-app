@@ -1,18 +1,15 @@
-import { FC, useEffect, useRef, useState } from "react";
-import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
-import Slider from "react-slick";
+import { FC, useEffect, useState } from "react";
 import { TmbdApiService } from "../../../services/TmbdApiService";
 import { IMovie, IMovieDetails } from "../../../types/movie";
 import { IPerson } from "../../../types/person";
 import { IVideo } from "../../../types/video";
-import ItemInfo from "../../Item info/ItemInfo";
+import ActorsList from "../../Item Page components/actors list/ActorsList";
+import LeftInfo from "../../Item Page components/left info/LeftInfo";
+import SimilarMovies from "../../Item Page components/similar movies/SimilarMovies";
 import Modal from "../../modal/Modal";
 import Video from "../../modal/Video";
 import ActorAvatar from "../../ui/actor avatar/ActorAvatar";
-import Bookmark from "../../ui/bookmark/Bookmark";
 import Loader from "../../ui/loader/Loader";
-import SimilarMovie from "../../ui/similar movie/SimilarMovie";
-import TrailerButton from "../../ui/trailer button/TrailerButton";
 import styles from "./ItemP.module.scss";
 
 interface ItemPProps {
@@ -27,23 +24,12 @@ const ItemP: FC<ItemPProps> = ({ itemId }) => {
 	const [videos, setVideos] = useState<IVideo[]>([]);
 	const [actorModalVisible, setActorModalVisible] = useState(false);
 	const [similar, setSimialar] = useState<IMovie[]>([]);
-	const [currentSlide, setCurrentSlide] = useState<number>(1);
-	const sliderRef = useRef<Slider>(null);
-
-	const settings = {
-		dots: false,
-		infinite: false,
-		speed: 500,
-		slidesToShow: 6,
-		slidesToScroll: 6,
-		arrows: false,
-	};
+	console.log(actors);
 
 	useEffect(() => {
 		if (itemId) {
 			fetchItem();
 		}
-		setCurrentSlide(1);
 	}, [itemId]);
 
 	const fetchItem = async () => {
@@ -65,19 +51,6 @@ const ItemP: FC<ItemPProps> = ({ itemId }) => {
 		setActorModalVisible(true);
 	};
 
-	const previousSlide = () => {
-		if (currentSlide > 1) {
-			sliderRef.current!.slickPrev();
-			setCurrentSlide(currentSlide - 1);
-		}
-	};
-
-	const nextSlide = () => {
-		if (currentSlide !== Math.ceil(similar.length / settings.slidesToScroll)) {
-			sliderRef.current!.slickNext();
-			setCurrentSlide(currentSlide + 1);
-		}
-	};
 	console.log(similar);
 	return (
 		<div
@@ -122,65 +95,17 @@ const ItemP: FC<ItemPProps> = ({ itemId }) => {
 							alt=""
 						/>
 						<div className={styles.info_wrapper}>
-							<div className="flex flex-col justify-center ">
-								<h1>{item.title}</h1>
-								<ItemInfo item={item} />
-								<div className="text-gray-400 max-w-2xl">{item.overview}</div>
-								<div className="flex gap-6 mt-8">
-									{videos.length > 0 && (
-										<TrailerButton setModalVisible={setVideoModalVisible} />
-									)}
-									<Bookmark />
-								</div>
-							</div>
+							<LeftInfo
+								item={item}
+								videos={videos}
+								setVideoModalVisible={setVideoModalVisible}
+							/>
 
 							<div className={styles.right_side_info_wrapper}>
-								<div className="pt-6">
-									<h3>Similar Movies</h3>
-									{similar && (
-										<Slider ref={sliderRef} {...settings}>
-											{similar?.map((sim) => (
-												<SimilarMovie key={sim.id} movie={sim} />
-											))}
-										</Slider>
-									)}
-									<div className={styles.arrow_wrapper}>
-										<FiChevronLeft
-											className={`
-										${
-											currentSlide === 1
-												? "text-neutral-500 "
-												: "text-white-500 hover:text-cyan-500 "
-										}
-                    transition-all ease-in-out duration-300`}
-											onClick={previousSlide}
-										/>
-										<FiChevronRight
-											className={`
-										${
-											currentSlide ===
-											Math.ceil(similar.length / settings.slidesToScroll)
-												? "text-neutral-500 "
-												: "text-white-500 hover:text-cyan-500 "
-										}
-                      transition-all ease-in-out duration-300`}
-											onClick={nextSlide}
-										/>
-									</div>
-								</div>
-								<div className={styles.actors_wrapper}>
-									<h3>Actors</h3>
-									{actors && (
-										<div>
-											{actors?.slice(0, 8).map((actor) => (
-												<ActorAvatar key={actor.id} actor={actor} />
-											))}
-											<button onClick={handleClick} className={styles.view_all}>
-												VIEW <br /> ALL
-											</button>
-										</div>
-									)}
-								</div>
+								<SimilarMovies similar={similar} />
+								{actors && (
+									<ActorsList actors={actors} handleClick={handleClick} />
+								)}
 							</div>
 						</div>
 					</>

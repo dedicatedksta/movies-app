@@ -1,0 +1,6 @@
+.arrow_wrapper {
+	@apply w-full flex justify-center text-xl mb-2;
+	> svg {
+		@apply cursor-pointer;
+	}
+}

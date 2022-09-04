@@ -1,6 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
-import React, { FC, SetStateAction } from "react";
+import { FC } from "react";
 import { IMovie } from "../../types/movie";
 import { ITvShow } from "../../types/tv";
 import { getMovieGenres, getTvGenres } from "../../utils/getGenreList";

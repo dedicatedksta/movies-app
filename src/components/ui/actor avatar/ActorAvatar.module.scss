@@ -1,9 +1,12 @@
 .actor_wrapper {
-	@apply flex flex-col items-center cursor-pointer max-w-[65px];
+	@apply flex flex-col items-center cursor-pointer max-w-[80px];
 	> img {
-		@apply w-14 h-20 rounded-md mb-4 hover:scale-105 transition-all ease-out duration-300;
+		@apply w-24 h-28 rounded-md mb-4 hover:scale-105 transition-all ease-out duration-300;
 	}
 	> div {
 		@apply w-full text-xs text-center hover:text-cyan-500 transition-all ease-out duration-300;
+	}
+	> span {
+		@apply text-[10px] mt-1 text-center text-neutral-400;
 	}
 }

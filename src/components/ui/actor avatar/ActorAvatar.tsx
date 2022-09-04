@@ -10,6 +10,7 @@ const ActorAvatar: FC<{ actor: IPerson }> = ({ actor }) => {
 				alt=""
 			/>
 			<div>{actor.name}</div>
+			<span>{actor.character}</span>
 		</div>
 	);
 };

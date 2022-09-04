@@ -2,6 +2,7 @@ import { FC, SetStateAction, useEffect, useRef, useState } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import Slider from "react-slick";
 import { IMovie } from "../../types/movie";
+import SliderHandler from "../../utils/handleSlides";
 import Item from "../item/Item";
 import Loader from "../ui/loader/Loader";
 import styles from "./BottomItems.module.scss";
@@ -36,20 +37,13 @@ const BottomItems: FC<BottomItemsProps> = ({
 		slidesToScroll: 5,
 		arrows: false,
 	};
-
-	const previousSlide = () => {
-		if (currentSlide > 1) {
-			sliderRef.current!.slickPrev();
-			setCurrentSlide(currentSlide - 1);
-		}
-	};
-
-	const nextSlide = () => {
-		if (currentSlide !== Math.ceil(items.length / settings.slidesToScroll)) {
-			sliderRef.current!.slickNext();
-			setCurrentSlide(currentSlide + 1);
-		}
-	};
+	const sliderHandler = new SliderHandler(
+		sliderRef,
+		currentSlide,
+		setCurrentSlide,
+		items.length,
+		settings.slidesToShow
+	);
 
 	return (
 		<div className={styles.b_movies_wrapper}>
@@ -93,7 +87,7 @@ const BottomItems: FC<BottomItemsProps> = ({
 												: "text-white-500 hover:text-cyan-500 "
 										}
                     transition-all ease-in-out duration-300`}
-							onClick={previousSlide}
+							onClick={() => sliderHandler.previousSlide()}
 						/>
 						<FiChevronRight
 							className={`
@@ -104,7 +98,7 @@ const BottomItems: FC<BottomItemsProps> = ({
 												: "text-white-500 hover:text-cyan-500 "
 										}
                       transition-all ease-in-out duration-300`}
-							onClick={nextSlide}
+							onClick={() => sliderHandler.nextSlide()}
 						/>
 					</div>
 				</div>
