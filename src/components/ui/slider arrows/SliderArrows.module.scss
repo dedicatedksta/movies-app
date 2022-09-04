@@ -1,0 +1,9 @@
+.arrow_wrapper {
+	@apply flex text-xl gap-1 mt-1;
+	> svg {
+		@apply text-neutral-500 cursor-pointer  transition-all ease-in-out duration-300;
+	}
+	> .usable {
+		@apply text-white hover:text-cyan-500;
+	}
+}

@@ -36,7 +36,7 @@ const Backdrop: FC<BackdropProps> = ({
 		const videos = await TmbdApiService.getVideo(item.id, sidebarActive);
 		setVideos(videos);
 	}
-
+	console.log(item);
 	return loading ? (
 		<div className="h-[50vh] flex justify-center items-center bg-[#0A0A0A]">
 			<Loader />
@@ -70,7 +70,7 @@ const Backdrop: FC<BackdropProps> = ({
 				</div>
 				<div className={styles.description}>{item.overview}</div>
 				<div className={styles.button_wrapper}>
-					<Link href={`/${item.id}`}>
+					<Link href={`/${sidebarActive}/${item.id}`}>
 						<a>Learn More</a>
 					</Link>
 					<TrailerButton setModalVisible={setModalVisible} />

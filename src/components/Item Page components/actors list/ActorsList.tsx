@@ -8,7 +8,7 @@ interface ActorsListProps {
 	handleClick: () => void;
 }
 const ActorsList: FC<ActorsListProps> = ({ actors, handleClick }) => {
-	console.log(actors);
+	if (actors.length <= 0) return null;
 	return (
 		<div className={styles.actors_wrapper}>
 			<h3>Cast</h3>
@@ -17,9 +17,11 @@ const ActorsList: FC<ActorsListProps> = ({ actors, handleClick }) => {
 				{actors?.slice(0, 6).map((actor) => (
 					<ActorAvatar key={actor.id} actor={actor} />
 				))}
-				<button onClick={handleClick} className={styles.view_all}>
-					VIEW <br /> ALL
-				</button>
+				{actors.length > 6 && (
+					<button onClick={handleClick} className={styles.view_all}>
+						VIEW <br /> ALL
+					</button>
+				)}
 			</div>
 		</div>
 	);

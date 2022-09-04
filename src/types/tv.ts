@@ -1,4 +1,5 @@
 export interface ITvShow {
+	media_type: string;
 	original_name: string;
 	id: number;
 	backdrop_path: string | null;

@@ -11,6 +11,7 @@ interface ICollection {
 }
 
 export interface IMovie {
+	media_type: string;
 	original_name: string | undefined;
 	poster_path: string | null;
 	genre_ids: number[];

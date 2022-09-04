@@ -3,8 +3,10 @@ import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import Slider from "react-slick";
 import { IMovie } from "../../types/movie";
 import SliderHandler from "../../utils/handleSlides";
+import Categories from "../categories/Categories";
 import Item from "../item/Item";
 import Loader from "../ui/loader/Loader";
+import SliderArrows from "../ui/slider arrows/SliderArrows";
 import styles from "./BottomItems.module.scss";
 
 interface BottomItemsProps {
@@ -46,60 +48,21 @@ const BottomItems: FC<BottomItemsProps> = ({
 
 	return (
 		<div className={styles.b_movies_wrapper}>
-			<div className={styles.category_wrapper}>
-				<span
-					onClick={() => setActiveTab(1)}
-					className={activeTab === 1 ? styles.active : ""}
-				>
-					Top Rated
-				</span>
-				<span
-					onClick={() => setActiveTab(2)}
-					className={activeTab === 2 ? styles.active : ""}
-				>
-					Most Popular
-				</span>
-				{sidebarActive === "movie" && (
-					<span
-						onClick={() => setActiveTab(3)}
-						className={activeTab === 3 ? styles.active : ""}
-					>
-						Now streaming
-					</span>
-				)}
-				<span
-					onClick={() => setActiveTab(4)}
-					className={activeTab === 4 ? styles.active : ""}
-				>
-					{sidebarActive === "movie" ? `upcoming` : `on the air`}
-				</span>
-			</div>
+			<Categories
+				activeTab={activeTab}
+				setActiveTab={setActiveTab}
+				sidebarActive={sidebarActive}
+			/>
 			<div className={styles.carousel_wrapper}>
 				<div className={styles.carousel_info_wrapper}>
 					<h6>{`${sidebarActive === "movie" ? "Movies" : "TV Shows"}`}</h6>
-					<div className={styles.arrow_wrapper}>
-						<FiChevronLeft
-							className={`
-										${
-											currentSlide === 1
-												? "text-neutral-500 "
-												: "text-white-500 hover:text-cyan-500 "
-										}
-                    transition-all ease-in-out duration-300`}
-							onClick={() => sliderHandler.previousSlide()}
-						/>
-						<FiChevronRight
-							className={`
-										${
-											currentSlide ===
-											Math.ceil(items.length / settings.slidesToScroll)
-												? "text-neutral-500 "
-												: "text-white-500 hover:text-cyan-500 "
-										}
-                      transition-all ease-in-out duration-300`}
-							onClick={() => sliderHandler.nextSlide()}
-						/>
-					</div>
+					<SliderArrows
+						leftUsable={currentSlide !== 1}
+						rightUsable={
+							currentSlide !== Math.ceil(items.length / settings.slidesToScroll)
+						}
+						sliderHandler={sliderHandler}
+					/>
 				</div>
 				{loading ? (
 					<div className="flex justify-center items-center h-[25vh]">

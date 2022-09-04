@@ -46,7 +46,6 @@ export class TmbdApiService {
 			`${TmbdApiService.API_URL}/${type}/${id}/credits?api_key=${TmbdApiService.API_KEY}&language=en-US`
 		);
 		const data = await response.data;
-		console.log(data);
 		return data.cast.length > 0 ? data.cast : data.crew;
 	}
 

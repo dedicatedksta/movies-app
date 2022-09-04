@@ -25,7 +25,6 @@ const ItemP: FC<ItemPProps> = ({ itemType, itemId }) => {
 	const [videos, setVideos] = useState<IVideo[]>([]);
 	const [actorModalVisible, setActorModalVisible] = useState(false);
 	const [similar, setSimialar] = useState<IMovie[]>([]);
-	console.log(item);
 	useEffect(() => {
 		if (itemId) {
 			fetchItem();
@@ -36,7 +35,6 @@ const ItemP: FC<ItemPProps> = ({ itemType, itemId }) => {
 		setLoading(true);
 		const item = await TmbdApiService.getItem(itemId, itemType);
 		const cast: IPerson[] = await TmbdApiService.getActors(itemId, itemType);
-		console.log(cast);
 		const filteredCast = cast.filter((c) => c.profile_path);
 		const videos = await TmbdApiService.getVideo(item.id, itemType);
 		const similar = await TmbdApiService.getSimilar(item.id, itemType);

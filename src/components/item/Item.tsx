@@ -12,7 +12,6 @@ interface ItemProps {
 
 const Item: FC<ItemProps> = ({ item, sidebarActive }) => {
 	const genres = getMovieGenres(item.genre_ids) || getTvGenres(item.genre_ids);
-	console.log(`/${sidebarActive}/${item.id}`);
 	return (
 		<div className={styles.item_wrapper}>
 			{Object.keys(item).length !== 0 && (

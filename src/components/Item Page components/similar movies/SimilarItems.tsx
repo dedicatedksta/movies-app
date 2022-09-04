@@ -5,6 +5,7 @@ import { IMovie } from "../../../types/movie";
 import { ITvShow } from "../../../types/tv";
 import SliderHandler from "../../../utils/handleSlides";
 import SimilarItem from "../../ui/similar items/SimilarItem";
+import SliderArrows from "../../ui/slider arrows/SliderArrows";
 import styles from "./SimilarItems.module.scss";
 
 interface SimilarItemsProps {
@@ -41,27 +42,13 @@ const SimilarItems: FC<SimilarItemsProps> = ({ similar, itemType }) => {
 					))}
 				</Slider>
 			)}
-			<div className={styles.arrow_wrapper}>
-				<FiChevronLeft
-					className={`
-										${
-											currentSlide === 1
-												? "text-neutral-500 "
-												: "text-white-500 hover:text-cyan-500 "
-										}
-                    transition-all ease-in-out duration-300`}
-					onClick={() => sliderHandler.previousSlide()}
-				/>
-				<FiChevronRight
-					className={`
-										${
-											currentSlide ===
-											Math.ceil(similar.length / settings.slidesToScroll)
-												? "text-neutral-500 "
-												: "text-white-500 hover:text-cyan-500 "
-										}
-                      transition-all ease-in-out duration-300`}
-					onClick={() => sliderHandler.nextSlide()}
+			<div className={styles.arrow_container}>
+				<SliderArrows
+					leftUsable={currentSlide !== 1}
+					rightUsable={
+						currentSlide !== Math.ceil(similar.length / settings.slidesToScroll)
+					}
+					sliderHandler={sliderHandler}
 				/>
 			</div>
 		</div>

@@ -11,7 +11,7 @@ const SearchItem: FC<{
 	setValue: React.Dispatch<SetStateAction<string>>;
 }> = ({ item, setValue }) => {
 	return (
-		<Link href={`/${item.id}`}>
+		<Link href={`/${item.media_type}/${item.id}`}>
 			<div className={styles.searchitem_wrapper} onClick={() => setValue("")}>
 				<img src={`https://image.tmdb.org/t/p/w300${item.poster_path}`} />
 				<div className={styles.info_wrapper}>

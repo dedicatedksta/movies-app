@@ -1,0 +1,14 @@
+.category_wrapper {
+	@apply flex gap-8 pl-8  my-8 uppercase;
+	> span {
+		@apply relative cursor-pointer text-neutral-500 hover:text-white transition-colors ease-in-out duration-300;
+	}
+	.active {
+		@apply text-white;
+		&::before {
+			content: "";
+			@apply w-[30%] h-[2px] rounded-sm  absolute -bottom-1 bg-cyan-500 left-1/3;
+			animation: switchTab 0.3s ease-in-out;
+		}
+	}
+}
