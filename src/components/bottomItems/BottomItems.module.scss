@@ -15,21 +15,3 @@
 		}
 	}
 }
-
-@keyframes switchTab {
-	0% {
-		transform: scaleX(0);
-	}
-	10% {
-		transform: scaleX(8%);
-	}
-	20% {
-		transform: scaleX(16%);
-	}
-	30% {
-		transform: scaleX(24%);
-	}
-	40% {
-		transform: scaleX(30%);
-	}
-}

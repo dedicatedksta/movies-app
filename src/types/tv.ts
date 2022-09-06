@@ -15,4 +15,5 @@ export interface ITvShow {
 	runtime?: number;
 	release_date?: string;
 	first_air_date: string;
+	type?: string;
 }

@@ -7,11 +7,25 @@ import styles from "./Item.module.scss";
 
 interface ItemProps {
 	item: IMovie | ITvShow;
-	sidebarActive: string;
+	sidebarActive?: string;
 }
 
 const Item: FC<ItemProps> = ({ item, sidebarActive }) => {
-	const genres = getMovieGenres(item.genre_ids) || getTvGenres(item.genre_ids);
+	const genres = getGenres();
+	function getGenres() {
+		switch (sidebarActive) {
+			case "movie":
+				return (
+					getMovieGenres(item.genre_ids) ||
+					item?.genres?.map((genre) => genre.name).join(", ")
+				);
+			case "tv":
+				return (
+					getTvGenres(item.genre_ids) ||
+					item?.genres?.map((genre) => genre.name).join(", ")
+				);
+		}
+	}
 	return (
 		<div className={styles.item_wrapper}>
 			{Object.keys(item).length !== 0 && (
@@ -32,13 +46,13 @@ const Item: FC<ItemProps> = ({ item, sidebarActive }) => {
 			)}
 			<div className={styles.text_wrapper}>
 				<Link href={`/${sidebarActive}/${item.id}`}>
-					<h1 className={styles.item_name}>{`${
-						sidebarActive === "movie" ? item.title : item.original_name
-					}`}</h1>
+					<h1 className={styles.item_name}>
+						{item.title || item.original_name}
+					</h1>
 				</Link>
 				<div>
 					<span>{genres}</span>
-					<span>{item.vote_average}</span>
+					<span>{Number(item.vote_average.toFixed(1))}</span>
 				</div>
 			</div>
 		</div>

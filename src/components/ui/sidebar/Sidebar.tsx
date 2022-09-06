@@ -1,7 +1,8 @@
+import Link from "next/link";
 import React, { FC, SetStateAction } from "react";
-import { BiGroup } from "react-icons/bi";
 import { CgClapperBoard } from "react-icons/cg";
 import { GiTv } from "react-icons/gi";
+import { MdOutlineFavoriteBorder } from "react-icons/md";
 import styles from "./Sidebar.module.scss";
 
 interface SidebarProps {
@@ -31,7 +32,12 @@ const Sidebar: FC<SidebarProps> = ({
 				}}
 				className={sidebarActive === "tv" ? styles.active : ""}
 			/>
-			<BiGroup />
+			<MdOutlineFavoriteBorder
+				onClick={() => {
+					setSidebarActive("favourite");
+				}}
+				className={sidebarActive === "favourite" ? styles.active : ""}
+			/>
 		</aside>
 	);
 };

@@ -25,7 +25,6 @@ const Backdrop: FC<BackdropProps> = ({
 }) => {
 	const [videos, setVideos] = useState<IVideo[]>([]);
 	const [modalVisible, setModalVisible] = useState<boolean>(false);
-
 	useEffect(() => {
 		if (item.id) {
 			getVideos();
@@ -36,7 +35,6 @@ const Backdrop: FC<BackdropProps> = ({
 		const videos = await TmbdApiService.getVideo(item.id, sidebarActive);
 		setVideos(videos);
 	}
-	console.log(item);
 	return loading ? (
 		<div className="h-[50vh] flex justify-center items-center bg-[#0A0A0A]">
 			<Loader />
@@ -61,12 +59,14 @@ const Backdrop: FC<BackdropProps> = ({
 				)}
 			</div>
 			<div className={styles.text_wrapper}>
-				<h1>{`${
-					sidebarActive === "movie" ? item.title : item.original_name
-				}`}</h1>
+				<h1>{item.title || item.original_name}</h1>
 				<div className={styles.genre_wrapper}>
-					{genres && <span>{genres}</span>}
-					<span>{item.vote_average}/10</span>
+					{(genres || item.genres) && (
+						<span>
+							{genres || item?.genres.map((genre) => genre.name).join(", ")}
+						</span>
+					)}
+					<span>{Number(item.vote_average?.toFixed(1))}/10</span>
 				</div>
 				<div className={styles.description}>{item.overview}</div>
 				<div className={styles.button_wrapper}>

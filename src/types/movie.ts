@@ -24,6 +24,8 @@ export interface IMovie {
 	title: string;
 	backdrop_path: string | null;
 	vote_average: number;
+	genres?: IGenre[];
+	type?: string;
 }
 
 export interface IMovieDetails extends IMovie {

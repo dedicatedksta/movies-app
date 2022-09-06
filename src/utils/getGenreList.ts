@@ -159,6 +159,7 @@ export const getMovieGenres = (genre_ids: number[]) => {
 };
 
 export const getTvGenres = (genre_ids: number[]) => {
+	console.log(genre_ids);
 	const genres: string[] = [];
 	if (genre_ids) {
 		genre_ids.map((id) => {

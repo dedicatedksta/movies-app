@@ -1,7 +1,7 @@
 .item_wrapper {
-	@apply mt-6 max-w-fit px-6;
+	@apply mt-4 max-w-[360px] px-6 flex flex-col;
 	> .image_wrapper {
-		@apply w-72 h-40 relative hover:scale-105 cursor-pointer transition-all ease-in-out duration-300;
+		@apply relative hover:scale-105 self-center cursor-pointer transition-all ease-in-out duration-300;
 	}
 	> .text_wrapper {
 		@apply flex flex-col gap-4;

@@ -2,6 +2,7 @@ import { FC, SetStateAction, useEffect, useRef, useState } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import Slider from "react-slick";
 import { IMovie } from "../../types/movie";
+import { ITvShow } from "../../types/tv";
 import SliderHandler from "../../utils/handleSlides";
 import Categories from "../categories/Categories";
 import Item from "../item/Item";
@@ -10,7 +11,7 @@ import SliderArrows from "../ui/slider arrows/SliderArrows";
 import styles from "./BottomItems.module.scss";
 
 interface BottomItemsProps {
-	items: IMovie[];
+	items: IMovie[] | ITvShow[];
 	activeTab: number;
 	setActiveTab: React.Dispatch<SetStateAction<number>>;
 	sidebarActive: string;
@@ -56,6 +57,7 @@ const BottomItems: FC<BottomItemsProps> = ({
 			<div className={styles.carousel_wrapper}>
 				<div className={styles.carousel_info_wrapper}>
 					<h6>{`${sidebarActive === "movie" ? "Movies" : "TV Shows"}`}</h6>
+
 					<SliderArrows
 						leftUsable={currentSlide !== 1}
 						rightUsable={

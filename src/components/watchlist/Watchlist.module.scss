@@ -1,0 +1,19 @@
+.empty_wrapper {
+	@apply flex flex-col items-center mt-44;
+	> div {
+		@apply scale-150;
+		> svg {
+			@apply text-9xl bg-slate-600 text-cyan-400 py-20 rounded-xl box-content px-8;
+		}
+		> h6 {
+			@apply text-center mt-4 text-slate-400;
+		}
+	}
+}
+
+.watchlist_wrapper {
+	@apply flex flex-wrap;
+	> div {
+		@apply basis-1/5;
+	}
+}

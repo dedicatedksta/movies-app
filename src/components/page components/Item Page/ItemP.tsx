@@ -47,7 +47,6 @@ const ItemP: FC<ItemPProps> = ({ itemType, itemId }) => {
 	const handleClick = () => {
 		setActorModalVisible(true);
 	};
-	console.log(item);
 	return (
 		<div
 			className={`h-screen  ${
