@@ -26,6 +26,9 @@ export interface IMovie {
 	vote_average: number;
 	genres?: IGenre[];
 	type?: string;
+	profile_path: string;
+	name?: null;
+	known_for_department?: null;
 }
 
 export interface IMovieDetails extends IMovie {

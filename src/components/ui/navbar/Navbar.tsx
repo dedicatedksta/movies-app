@@ -16,7 +16,6 @@ const Navbar: FC<{ transparent: boolean }> = ({ transparent }) => {
 				</Link>
 				<Input />
 			</div>
-			<User />
 		</nav>
 	);
 };

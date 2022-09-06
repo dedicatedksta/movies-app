@@ -1,0 +1,9 @@
+.data_wrapper {
+	@apply my-2;
+	> .title {
+		@apply font-bold;
+	}
+	> .body {
+		@apply font-thin;
+	}
+}

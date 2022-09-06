@@ -1,0 +1,17 @@
+.person_wrapper {
+	@apply px-40 pb-20 flex gap-8 mt-12 min-h-fit;
+	> div {
+		> img {
+			@apply rounded-xl mb-6;
+		}
+	}
+	> .info_wrapper {
+		@apply max-w-6xl  flex flex-col justify-between;
+
+		> div {
+			> .arrow_wrapper {
+				@apply flex justify-end mr-4 border-b pb-2 border-b-neutral-600;
+			}
+		}
+	}
+}

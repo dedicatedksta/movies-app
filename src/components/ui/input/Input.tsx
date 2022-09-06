@@ -4,6 +4,7 @@ import { BsSearch } from "react-icons/bs";
 import { VscClose } from "react-icons/vsc";
 import { TmbdApiService } from "../../../services/TmbdApiService";
 import { IMovie } from "../../../types/movie";
+import { IPerson } from "../../../types/person";
 import { ITvShow } from "../../../types/tv";
 import SearchItem from "../../searchItem/SearchItem";
 import Loader from "../loader/Loader";
@@ -13,7 +14,9 @@ const Input = () => {
 	const [value, setValue] = useState<string>("");
 	const [loading, setLoading] = useState<boolean>(false);
 	const [visible, setVisible] = useState<boolean>(false);
-	const [searchedItems, setSearchedItems] = useState<IMovie[] | ITvShow[]>([]);
+	const [searchedItems, setSearchedItems] = useState<
+		(IMovie | ITvShow | IPerson)[]
+	>([]);
 
 	const inputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setValue(e.target.value);
@@ -25,6 +28,7 @@ const Input = () => {
 	async function fetchSearchedMovies(name: string) {
 		setLoading(true);
 		const items = await TmbdApiService.getSearchedItems(name);
+		console.log(items);
 		setSearchedItems(items);
 		setLoading(false);
 	}
@@ -61,7 +65,7 @@ const Input = () => {
 									<div className={styles.itemlist_wrapper}>
 										{searchedItems.map(
 											(item) =>
-												item.poster_path && (
+												(item.poster_path || item.profile_path) && (
 													<SearchItem
 														key={item.id}
 														item={item}
@@ -85,7 +89,7 @@ const Input = () => {
 				value={value}
 				onFocus={() => setVisible(true)}
 				onChange={inputChangeHandler}
-				placeholder="Search movies, tv shows..."
+				placeholder="Search movies, tv shows, actors..."
 				type="text"
 			/>
 			<BsSearch className={styles.searchIcon} />

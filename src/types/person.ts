@@ -7,4 +7,12 @@ export interface IPerson {
 	original_name: string;
 	profile_path: string;
 	character: string;
+	poster_path?: string;
+	media_type?: string;
+	title?: null;
+	vote_average?: null;
+	genre_ids: number[];
+	biography?: string;
+	place_of_birth: string;
+	birthday: string;
 }

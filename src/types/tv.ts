@@ -16,4 +16,7 @@ export interface ITvShow {
 	release_date?: string;
 	first_air_date: string;
 	type?: string;
+	profile_path?: string;
+	name?: null;
+	known_for_department?: null;
 }

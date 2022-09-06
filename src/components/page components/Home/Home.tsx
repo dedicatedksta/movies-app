@@ -65,7 +65,7 @@ const Home: FC<HomeProps> = () => {
 				setSidebarActive={setSidebarActive}
 				setActiveTab={setActiveTab}
 			/>
-			<main className="ml-28 max-w-full h-[100vh] relative">
+			<main className="ml-28 max-w-full h-[100vh] relative overflow-y-hidden">
 				{sidebarActive === "favourite" ? (
 					<Watchlist />
 				) : (

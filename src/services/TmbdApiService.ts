@@ -56,4 +56,20 @@ export class TmbdApiService {
 		const data = await response.data;
 		return data.results;
 	}
+
+	static async getPersonInfo(id: string | string[] | undefined) {
+		const response = await axios.get(
+			`${TmbdApiService.API_URL}/person/${id}?api_key=${TmbdApiService.API_KEY}&language=en-US`
+		);
+		const data = await response.data;
+		return data;
+	}
+
+	static async getPersonCredits(id: string | string[] | undefined) {
+		const response = await axios.get(
+			`${TmbdApiService.API_URL}/person/${id}/combined_credits?api_key=${TmbdApiService.API_KEY}&language=en-US`
+		);
+		const data = await response.data;
+		return data.cast;
+	}
 }
