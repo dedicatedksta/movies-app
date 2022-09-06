@@ -9,13 +9,14 @@ interface WatchlistProps {}
 
 const Watchlist: FC<WatchlistProps> = () => {
 	const [watchlist, setWatchlist] = useState<IMovie[] | ITvShow[]>([]);
+
 	useEffect(() => {
 		if (localStorage.getItem("favourite")) {
 			const i = JSON.parse(localStorage.getItem("favourite")!);
 			setWatchlist(i);
 		}
 	}, []);
-	console.log(watchlist);
+
 	return (
 		<div className="mt-2 mr-4">
 			{watchlist.length === 0 ? (

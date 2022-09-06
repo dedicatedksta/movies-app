@@ -30,11 +30,6 @@ const Item: FC<ItemProps> = ({ item, sidebarActive }) => {
 		<div className={styles.item_wrapper}>
 			{Object.keys(item).length !== 0 && (
 				<div className={styles.image_wrapper}>
-					{/* <Image
-						src={`https://image.tmdb.org/t/p/w300${movie.backdrop_path}`}
-						layout="fill"
-						className="object-cover"
-					/> */}
 					<Link href={`/${sidebarActive}/${item.id}`}>
 						<img
 							src={`https://image.tmdb.org/t/p/w300${item.backdrop_path}`}

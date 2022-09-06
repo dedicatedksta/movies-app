@@ -34,7 +34,7 @@ const LeftInfo: FC<LeftInfoProps> = ({
 			setWatchlistItems(items);
 		}
 	}, []);
-	console.log(itemType);
+
 	const handleFavourite = () => {
 		if (bookmarkDisabled) {
 			const newItems = watchlistItems.filter((i) => i.id !== item.id);
@@ -55,7 +55,7 @@ const LeftInfo: FC<LeftInfoProps> = ({
 			}
 		}
 	};
-	console.log(watchlistItems);
+
 	return (
 		<div className="flex flex-col justify-center ">
 			<h1>{itemType === "tv" ? item.original_name : item.title}</h1>

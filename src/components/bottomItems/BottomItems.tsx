@@ -1,5 +1,4 @@
 import { FC, SetStateAction, useEffect, useRef, useState } from "react";
-import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import Slider from "react-slick";
 import { IMovie } from "../../types/movie";
 import { ITvShow } from "../../types/tv";

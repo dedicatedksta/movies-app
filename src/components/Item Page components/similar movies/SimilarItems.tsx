@@ -1,5 +1,4 @@
 import { FC, useRef, useState } from "react";
-import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import Slider from "react-slick";
 import { IMovie } from "../../../types/movie";
 import { ITvShow } from "../../../types/tv";
@@ -16,6 +15,7 @@ interface SimilarItemsProps {
 const SimilarItems: FC<SimilarItemsProps> = ({ similar, itemType }) => {
 	const sliderRef = useRef<Slider>(null);
 	const [currentSlide, setCurrentSlide] = useState<number>(1);
+
 	const settings = {
 		dots: false,
 		infinite: false,
@@ -24,6 +24,7 @@ const SimilarItems: FC<SimilarItemsProps> = ({ similar, itemType }) => {
 		slidesToScroll: 7,
 		arrows: false,
 	};
+
 	const sliderHandler = new SliderHandler(
 		sliderRef,
 		currentSlide,

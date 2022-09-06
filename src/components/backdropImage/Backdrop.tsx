@@ -63,7 +63,7 @@ const Backdrop: FC<BackdropProps> = ({
 				<div className={styles.genre_wrapper}>
 					{(genres || item.genres) && (
 						<span>
-							{genres || item?.genres.map((genre) => genre.name).join(", ")}
+							{genres || item?.genres?.map((genre) => genre.name).join(", ")}
 						</span>
 					)}
 					<span>{Number(item.vote_average?.toFixed(1))}/10</span>
