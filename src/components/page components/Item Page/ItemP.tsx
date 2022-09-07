@@ -26,7 +26,7 @@ const ItemP: FC<ItemPProps> = ({ itemType, itemId }) => {
 	const [videos, setVideos] = useState<IVideo[]>([]);
 	const [actorModalVisible, setActorModalVisible] = useState(false);
 	const [similar, setSimialar] = useState<IMovie[]>([]);
-	const { similarShown } = useResponsive(window.innerWidth);
+	const { similarShown } = useResponsive();
 	useEffect(() => {
 		if (itemId) {
 			fetchItem();
@@ -86,7 +86,7 @@ const ItemP: FC<ItemPProps> = ({ itemType, itemId }) => {
 								</div>
 							</Modal>
 						)}
-						<div className="flex justify-center items-center md:bottom-0 max-h-[90vh]">
+						<div className="flex justify-center items-center md:bottom-0 h-full">
 							<img
 								className={styles.img}
 								src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}

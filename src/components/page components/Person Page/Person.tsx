@@ -1,5 +1,6 @@
 import { FC, useEffect, useRef, useState } from "react";
 import Slider from "react-slick";
+import { useResponsive } from "../../../hooks/useResponsive";
 import { TmbdApiService } from "../../../services/TmbdApiService";
 import { IMovie } from "../../../types/movie";
 import { IPerson } from "../../../types/person";
@@ -25,13 +26,13 @@ const Person: FC<PersonProps> = ({ id }) => {
 	const [loading, setLoading] = useState<boolean>(false);
 	const [shown, setShown] = useState(false);
 	const birthday = getFormattedDate(personInfo?.birthday);
-
+	const { actorItemsShown } = useResponsive();
 	const settings = {
 		dots: false,
 		infinite: false,
 		speed: 500,
-		slidesToShow: 4,
-		slidesToScroll: 4,
+		slidesToShow: actorItemsShown,
+		slidesToScroll: actorItemsShown,
 		arrows: false,
 	};
 
@@ -100,20 +101,23 @@ const Person: FC<PersonProps> = ({ id }) => {
 							<h1 className="text-3xl font-bold">{personInfo?.name}</h1>
 							<div className="my-8">
 								<div className="text-lg font-bold mb-2"> Biography</div>
-								{shown
-									? personInfo?.biography
-									: personInfo?.biography?.slice(0, 1750)}
-								{personInfo?.biography && personInfo?.biography?.length > 1750 && (
-									<>
-										{!shown && <span>...</span>}
-										<span
-											onClick={() => setShown(!shown)}
-											className="ml-2 text-cyan-400 hover:text-cyan-500 cursor-pointer"
-										>
-											{!shown ? "read more" : "read less"}
-										</span>
-									</>
-								)}
+								<div className="xl:text-base lg:text-sm md:text-sm">
+									{shown
+										? personInfo?.biography
+										: personInfo?.biography?.slice(0, 1750)}
+									{personInfo?.biography &&
+										personInfo?.biography?.length > 1750 && (
+											<>
+												{!shown && <span>...</span>}
+												<span
+													onClick={() => setShown(!shown)}
+													className="ml-2 text-cyan-400 hover:text-cyan-500 cursor-pointer"
+												>
+													{!shown ? "read more" : "read less"}
+												</span>
+											</>
+										)}
+								</div>
 							</div>
 						</div>
 						<div>

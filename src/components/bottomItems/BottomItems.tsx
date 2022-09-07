@@ -1,5 +1,6 @@
 import { FC, SetStateAction, useEffect, useRef, useState } from "react";
 import Slider from "react-slick";
+import { useResponsive } from "../../hooks/useResponsive";
 import { IMovie } from "../../types/movie";
 import { ITvShow } from "../../types/tv";
 import SliderHandler from "../../utils/handleSlides";
@@ -26,16 +27,14 @@ const BottomItems: FC<BottomItemsProps> = ({
 }) => {
 	const sliderRef = useRef<Slider>(null);
 	const [currentSlide, setCurrentSlide] = useState<number>(1);
-	useEffect(() => {
-		setCurrentSlide(1);
-	}, [items]);
+	const { bottomItemsShown } = useResponsive();
 
 	const settings = {
 		dots: false,
 		infinite: false,
 		speed: 500,
-		slidesToShow: 5,
-		slidesToScroll: 5,
+		slidesToShow: bottomItemsShown,
+		slidesToScroll: bottomItemsShown,
 		arrows: false,
 	};
 	const sliderHandler = new SliderHandler(

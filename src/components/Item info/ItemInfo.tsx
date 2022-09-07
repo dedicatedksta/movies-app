@@ -26,13 +26,6 @@ const ItemInfo: FC<{ item: IMovieDetails | ITvShow }> = ({ item }) => {
 						</span>
 					)}
 				</div>
-
-				{genres && (
-					<div>
-						<BsDot className="lg:mx-1 md:text-lg lg:text-2xl" />{" "}
-						{genres.join(", ")}
-					</div>
-				)}
 				{(item.release_date || item.first_air_date) && (
 					<div>
 						<BsDot className="lg:mx-1 md:text-lg lg:text-2xl" />
@@ -40,6 +33,12 @@ const ItemInfo: FC<{ item: IMovieDetails | ITvShow }> = ({ item }) => {
 							{item.release_date?.split("-")[0] ||
 								item.first_air_date?.split("-")[0]}
 						</span>
+					</div>
+				)}
+				{genres && (
+					<div className=" md:whitespace-normal xl:whitespace-nowrap">
+						<BsDot className="lg:mx-1 md:text-lg lg:text-2xl" />{" "}
+						{genres.join(", ")}
 					</div>
 				)}
 			</div>
