@@ -10,18 +10,23 @@ import styles from "./SimilarItems.module.scss";
 interface SimilarItemsProps {
 	similar: IMovie[] | ITvShow[];
 	itemType: string;
+	similarShown: number;
 }
 
-const SimilarItems: FC<SimilarItemsProps> = ({ similar, itemType }) => {
+const SimilarItems: FC<SimilarItemsProps> = ({
+	similar,
+	itemType,
+	similarShown,
+}) => {
 	const sliderRef = useRef<Slider>(null);
 	const [currentSlide, setCurrentSlide] = useState<number>(1);
-
+	console.log(similarShown);
 	const settings = {
 		dots: false,
 		infinite: false,
 		speed: 500,
-		slidesToShow: 7,
-		slidesToScroll: 7,
+		slidesToShow: similarShown + 1,
+		slidesToScroll: similarShown + 1,
 		arrows: false,
 	};
 

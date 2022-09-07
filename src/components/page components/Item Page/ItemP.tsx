@@ -1,4 +1,5 @@
 import { FC, useEffect, useState } from "react";
+import { useResponsive } from "../../../hooks/useResponsive";
 import { TmbdApiService } from "../../../services/TmbdApiService";
 import { IMovie, IMovieDetails } from "../../../types/movie";
 import { IPerson } from "../../../types/person";
@@ -25,12 +26,13 @@ const ItemP: FC<ItemPProps> = ({ itemType, itemId }) => {
 	const [videos, setVideos] = useState<IVideo[]>([]);
 	const [actorModalVisible, setActorModalVisible] = useState(false);
 	const [similar, setSimialar] = useState<IMovie[]>([]);
+	const { similarShown } = useResponsive(window.innerWidth);
 	useEffect(() => {
 		if (itemId) {
 			fetchItem();
 		}
 	}, [itemId, itemType]);
-
+	console.log(similarShown);
 	const fetchItem = async () => {
 		setLoading(true);
 		const item = await TmbdApiService.getItem(itemId, itemType);
@@ -84,24 +86,34 @@ const ItemP: FC<ItemPProps> = ({ itemType, itemId }) => {
 								</div>
 							</Modal>
 						)}
-						<img
-							className={styles.img}
-							src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
-							alt=""
-						/>
-						<div className={styles.info_wrapper}>
-							<LeftInfo
-								itemType={itemType}
-								item={item}
-								videos={videos}
-								setVideoModalVisible={setVideoModalVisible}
+						<div className="flex justify-center items-center md:bottom-0 max-h-[90vh]">
+							<img
+								className={styles.img}
+								src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
+								alt=""
 							/>
+							<div className={styles.info_wrapper}>
+								<LeftInfo
+									itemType={itemType}
+									item={item}
+									videos={videos}
+									setVideoModalVisible={setVideoModalVisible}
+								/>
 
-							<div className={styles.right_side_info_wrapper}>
-								<SimilarItems itemType={itemType} similar={similar} />
-								{actors && (
-									<ActorsList actors={actors} handleClick={handleClick} />
-								)}
+								<div className={styles.right_side_info_wrapper}>
+									<SimilarItems
+										similarShown={similarShown}
+										itemType={itemType}
+										similar={similar}
+									/>
+									{actors && (
+										<ActorsList
+											similarShown={similarShown}
+											actors={actors}
+											handleClick={handleClick}
+										/>
+									)}
+								</div>
 							</div>
 						</div>
 					</>

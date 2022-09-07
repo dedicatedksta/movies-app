@@ -1,16 +1,16 @@
 .img {
-	@apply w-screen top-0 fixed;
+	@apply w-screen h-screen top-0 fixed object-cover;
 }
 
 .info_wrapper {
-	@apply z-30 text-white absolute bottom-12 bg-[rgba(0,0,0,0.688)]   mx-40 py-6 px-8 flex gap-48;
+	@apply z-30 text-white md:relative absolute bottom-16 mt-20 2xl:mt-48  items-center bg-[rgba(0,0,0,0.688)] md:max-w-[95%] lg:max-w-[95%] xl:max-w-[90%]  2xl:mx-40 lg:px-6 lg:py-3 xl:py-6 xl:px-8 md:px-4 md:py-2 flex md:flex-row flex-col md:gap-6 lg:gap-10 2xl:gap-20 xl:gap-24 max-w-[95%] px-6 py-8 md:max-h-full md:overflow-y-hidden max-h-[70%] overflow-y-auto overflow-x-hidden;
 	> div > h1 {
-		@apply text-5xl font-bold;
+		@apply lg:text-3xl xl:text-5xl md:text-xl text-xl font-bold;
 	}
 }
 
 .full_actor_list {
-	@apply box-content px-8 rounded-lg flex flex-wrap max-w-lg gap-5 justify-center max-h-96 overflow-auto py-8 overflow-x-hidden bg-[rgba(0,0,0,0.6)];
+	@apply md:box-content px-0 md:px-8 rounded-lg flex flex-wrap max-w-sm md:max-w-lg gap-5 justify-center max-h-96 overflow-auto py-8 overflow-x-hidden bg-[rgba(0,0,0,0.6)];
 }
 
 .full_actor_list::-webkit-scrollbar {
@@ -22,8 +22,8 @@
 }
 
 .right_side_info_wrapper {
-	@apply max-w-2xl;
+	@apply 2xl:max-w-2xl xl:max-w-xl lg:max-w-md md:max-w-[288px] max-w-[320px] flex-1;
 	h3 {
-		@apply text-3xl mb-4 ml-2;
+		@apply md:text-xl lg:text-3xl text-2xl mb-4 ml-2;
 	}
 }

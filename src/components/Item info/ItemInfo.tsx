@@ -29,12 +29,13 @@ const ItemInfo: FC<{ item: IMovieDetails | ITvShow }> = ({ item }) => {
 
 				{genres && (
 					<div>
-						<BsDot className="mx-1 text-2xl" /> {genres.join(", ")}
+						<BsDot className="lg:mx-1 md:text-lg lg:text-2xl" />{" "}
+						{genres.join(", ")}
 					</div>
 				)}
 				{(item.release_date || item.first_air_date) && (
 					<div>
-						<BsDot className="mx-1 text-2xl" />
+						<BsDot className="lg:mx-1 md:text-lg lg:text-2xl" />
 						<span>
 							{item.release_date?.split("-")[0] ||
 								item.first_air_date?.split("-")[0]}

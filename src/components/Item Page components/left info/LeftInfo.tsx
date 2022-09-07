@@ -23,6 +23,7 @@ const LeftInfo: FC<LeftInfoProps> = ({
 	const [watchlistItems, setWatchlistItems] = useState<(IMovie | ITvShow)[]>(
 		[]
 	);
+
 	useEffect(() => {
 		if (localStorage.getItem("favourite")) {
 			const items: IMovie[] | ITvShow[] = JSON.parse(
@@ -57,11 +58,11 @@ const LeftInfo: FC<LeftInfoProps> = ({
 	};
 
 	return (
-		<div className="flex flex-col justify-center ">
+		<div className="flex flex-col justify-center flex-1 xl:max-w-2xl lg:max-w-md md:max-w-sm max-w-[356px] mb-16 md:mb-0 ">
 			<h1>{itemType === "tv" ? item.original_name : item.title}</h1>
 			<ItemInfo item={item} />
-			<div className="text-gray-400 max-w-2xl">{item.overview}</div>
-			<div className="flex gap-6 mt-8">
+			<div className="text-gray-400  ">{item.overview}</div>
+			<div className="flex gap-4 md:gap-6 mt-8">
 				{videos.length > 0 && (
 					<TrailerButton setModalVisible={setVideoModalVisible} />
 				)}

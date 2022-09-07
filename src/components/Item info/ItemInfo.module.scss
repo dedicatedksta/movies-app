@@ -3,14 +3,14 @@
 }
 
 .rating_wrapper {
-	@apply flex items-center text-lg;
+	@apply flex items-center md:text-xs lg:text-lg text-sm;
 	> svg {
 		@apply fill-yellow-400 mr-1;
 	}
 }
 
 .description_wrapper {
-	@apply flex items-center ml-8 text-base whitespace-nowrap text-gray-400;
+	@apply flex items-center ml-2 xl:ml-2 text-xs md:text-sm xl:text-base whitespace-nowrap text-gray-400;
 	> div {
 		@apply flex items-center;
 	}

@@ -1,5 +1,5 @@
 .input_wrapper {
-	@apply bg-white rounded-2xl h-9 flex w-[480px] items-center relative;
+	@apply bg-white rounded-2xl h-9 flex mt-2 md:mt-0 w-[320px]  md:w-[480px] items-center relative;
 
 	> input {
 		@apply pl-9 border-none outline-none bg-transparent h-full w-full text-black;
