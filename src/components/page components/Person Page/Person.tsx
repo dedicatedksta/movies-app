@@ -4,6 +4,7 @@ import { TmbdApiService } from "../../../services/TmbdApiService";
 import { IMovie } from "../../../types/movie";
 import { IPerson } from "../../../types/person";
 import { ITvShow } from "../../../types/tv";
+import { getFormattedDate } from "../../../utils/getFormattedDate";
 import SliderHandler from "../../../utils/handleSlides";
 import Item from "../../item/Item";
 import FormattedData from "../../Person Page components/FormattedData";
@@ -23,6 +24,7 @@ const Person: FC<PersonProps> = ({ id }) => {
 	const [currentSlide, setCurrentSlide] = useState<number>(1);
 	const [loading, setLoading] = useState<boolean>(false);
 	const [shown, setShown] = useState(false);
+	const birthday = getFormattedDate(personInfo?.birthday);
 
 	const settings = {
 		dots: false,
@@ -83,11 +85,8 @@ const Person: FC<PersonProps> = ({ id }) => {
 								body={personInfo?.gender === 2 ? "Male" : "Female"}
 							/>
 						)}
-						{personInfo?.birthday && (
-							<FormattedData
-								title="Date of birth"
-								body={personInfo?.birthday}
-							/>
+						{birthday && (
+							<FormattedData title="Date of birth" body={birthday} />
 						)}
 						{personInfo?.place_of_birth && (
 							<FormattedData
