@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { FC, useEffect, useState } from "react";
 import { TmbdApiService } from "../../../services/TmbdApiService";
 import { IMovie } from "../../../types/movie";
@@ -57,6 +58,7 @@ const Home: FC<HomeProps> = () => {
 		setRenderedItemGenres(getMovieGenres(Items[0].genre_ids));
 		setLoading(false);
 	}
+
 	return (
 		<>
 			<Navbar transparent={false} />

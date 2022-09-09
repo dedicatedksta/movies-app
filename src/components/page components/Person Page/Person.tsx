@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { FC, useEffect, useRef, useState } from "react";
 import Slider from "react-slick";
 import { useResponsive } from "../../../hooks/useResponsive";
@@ -62,6 +63,9 @@ const Person: FC<PersonProps> = ({ id }) => {
 
 	return (
 		<>
+			<Head>
+				<title>{personInfo?.name}</title>
+			</Head>
 			<Navbar transparent={false} />
 			{loading ? (
 				<div className="h-screen flex items-center justify-center">

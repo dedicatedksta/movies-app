@@ -1,4 +1,5 @@
-import { FC, useEffect, useState } from "react";
+import Head from "next/head";
+import { FC, useEffect, useMemo, useState } from "react";
 import { useResponsive } from "../../../hooks/useResponsive";
 import { TmbdApiService } from "../../../services/TmbdApiService";
 import { IMovie, IMovieDetails } from "../../../types/movie";
@@ -27,12 +28,13 @@ const ItemP: FC<ItemPProps> = ({ itemType, itemId }) => {
 	const [actorModalVisible, setActorModalVisible] = useState(false);
 	const [similar, setSimialar] = useState<IMovie[]>([]);
 	const { similarShown } = useResponsive();
+
 	useEffect(() => {
 		if (itemId) {
 			fetchItem();
 		}
 	}, [itemId, itemType]);
-	console.log(similarShown);
+
 	const fetchItem = async () => {
 		setLoading(true);
 		const item = await TmbdApiService.getItem(itemId, itemType);
@@ -46,15 +48,20 @@ const ItemP: FC<ItemPProps> = ({ itemType, itemId }) => {
 		setSimialar(similar);
 		setLoading(false);
 	};
+
 	const handleClick = () => {
 		setActorModalVisible(true);
 	};
+
 	return (
 		<div
 			className={`h-screen  ${
 				loading ? "flex items-center justify-center" : ""
 			}`}
 		>
+			<Head>
+				<title>{item?.title || item?.original_name}</title>
+			</Head>
 			{loading ? (
 				<Loader />
 			) : (

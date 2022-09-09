@@ -4,7 +4,7 @@
 		@apply text-sm;
 	}
 	> div {
-		@apply flex lg:gap-2 xl:gap-4 gap-4;
+		@apply flex md:gap-1 lg:gap-2 xl:gap-4 gap-4;
 	}
 }
 .view_all {

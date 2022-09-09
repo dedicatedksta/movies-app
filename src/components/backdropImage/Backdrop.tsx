@@ -25,6 +25,7 @@ const Backdrop: FC<BackdropProps> = ({
 }) => {
 	const [videos, setVideos] = useState<IVideo[]>([]);
 	const [modalVisible, setModalVisible] = useState<boolean>(false);
+
 	useEffect(() => {
 		if (item.id) {
 			getVideos();
@@ -35,6 +36,7 @@ const Backdrop: FC<BackdropProps> = ({
 		const videos = await TmbdApiService.getVideo(item.id, sidebarActive);
 		setVideos(videos);
 	}
+
 	return loading ? (
 		<div className="h-[50vh] flex justify-center items-center bg-[#0A0A0A]">
 			<Loader />
@@ -48,10 +50,6 @@ const Backdrop: FC<BackdropProps> = ({
 			)}
 			<div className={styles.image_wrapper}>
 				{Object.keys(item).length !== 0 && (
-					// <Image
-					// 	src={`https://image.tmdb.org/t/p/w1280${item.backdrop_path}`}
-					// 	layout="fill"
-					// />
 					<img
 						src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
 						className="object-cover"

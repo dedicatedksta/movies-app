@@ -44,7 +44,7 @@ const BottomItems: FC<BottomItemsProps> = ({
 		items.length,
 		settings.slidesToShow
 	);
-
+  
 	return (
 		<div className={styles.b_movies_wrapper}>
 			<Categories

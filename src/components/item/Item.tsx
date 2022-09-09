@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FC } from "react";
+import { FC, useMemo } from "react";
 import { IMovie } from "../../types/movie";
 import { ITvShow } from "../../types/tv";
 import { getMovieGenres, getTvGenres } from "../../utils/getGenreList";
@@ -11,7 +11,8 @@ interface ItemProps {
 }
 
 const Item: FC<ItemProps> = ({ item, sidebarActive }) => {
-	const genres = getGenres();
+	const genres = useMemo(() => getGenres(), [item]);
+
 	function getGenres() {
 		switch (sidebarActive) {
 			case "movie":
@@ -26,6 +27,7 @@ const Item: FC<ItemProps> = ({ item, sidebarActive }) => {
 				);
 		}
 	}
+
 	return (
 		<div className={styles.item_wrapper}>
 			{Object.keys(item).length !== 0 && (

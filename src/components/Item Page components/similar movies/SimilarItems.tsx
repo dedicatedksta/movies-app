@@ -20,7 +20,7 @@ const SimilarItems: FC<SimilarItemsProps> = ({
 }) => {
 	const sliderRef = useRef<Slider>(null);
 	const [currentSlide, setCurrentSlide] = useState<number>(1);
-	console.log(similarShown);
+
 	const settings = {
 		dots: false,
 		infinite: false,

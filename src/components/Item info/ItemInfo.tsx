@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useMemo } from "react";
 import { AiFillStar } from "react-icons/ai";
 import { BsDot } from "react-icons/bs";
 import { IMovieDetails } from "../../types/movie";
@@ -8,7 +8,7 @@ import Rating from "../rating/Rating";
 import styles from "./ItemInfo.module.scss";
 
 const ItemInfo: FC<{ item: IMovieDetails | ITvShow }> = ({ item }) => {
-	const genres = item?.genres.map((genre) => genre.name);
+	const genres = useMemo(() => item?.genres.map((genre) => genre.name), [item]);
 
 	return (
 		<div className={styles.iteminfo_wrapper}>

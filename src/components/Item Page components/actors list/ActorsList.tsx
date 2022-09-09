@@ -8,12 +8,14 @@ interface ActorsListProps {
 	handleClick: () => void;
 	similarShown: number;
 }
+
 const ActorsList: FC<ActorsListProps> = ({
 	actors,
 	handleClick,
 	similarShown,
 }) => {
 	if (actors.length <= 0) return null;
+
 	return (
 		<div className={styles.actors_wrapper}>
 			<h3>Cast</h3>

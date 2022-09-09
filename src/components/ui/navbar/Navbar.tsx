@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { FC } from "react";
-import User from "../../user/User";
 import Input from "../input/Input";
 import styles from "./Navbar.module.scss";
 

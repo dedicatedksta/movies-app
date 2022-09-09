@@ -16,21 +16,6 @@
 	}
 }
 
-.error {
-	@apply h-full flex items-center text-center justify-center text-red-400;
-}
-
 .autocomplete_wrapper {
 	@apply bg-neutral-900 flex justify-center w-full absolute h-64 top-12 rounded-xl z-50;
-}
-
-.itemlist_wrapper {
-	@apply h-full w-full overflow-auto overflow-x-hidden;
-}
-.itemlist_wrapper::-webkit-scrollbar {
-	width: 12px;
-}
-
-.itemlist_wrapper::-webkit-scrollbar-thumb {
-	@apply bg-cyan-500 rounded-xl cursor-pointer hover:bg-cyan-600 transition-all ease-in-out duration-300;
 }
