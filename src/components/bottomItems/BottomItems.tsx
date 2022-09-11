@@ -44,10 +44,13 @@ const BottomItems: FC<BottomItemsProps> = ({
 		items.length,
 		settings.slidesToShow
 	);
-  
+
+	console.log(currentSlide);
+
 	return (
 		<div className={styles.b_movies_wrapper}>
 			<Categories
+				setCurrentSlide={setCurrentSlide}
 				activeTab={activeTab}
 				setActiveTab={setActiveTab}
 				sidebarActive={sidebarActive}
