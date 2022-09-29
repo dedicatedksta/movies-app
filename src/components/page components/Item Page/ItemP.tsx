@@ -54,11 +54,7 @@ const ItemP: FC<ItemPProps> = ({ itemType, itemId }) => {
 	};
 
 	return (
-		<div
-			className={`h-screen  ${
-				loading ? "flex items-center justify-center" : ""
-			}`}
-		>
+		<div className={`  ${loading ? "flex items-center justify-center" : ""}`}>
 			<Head>
 				<title>{item?.title || item?.original_name}</title>
 			</Head>
