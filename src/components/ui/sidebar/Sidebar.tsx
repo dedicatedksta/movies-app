@@ -29,7 +29,7 @@ const Sidebar: FC<SidebarProps> = ({
 					setSidebarActive("tv");
 					setActiveTab(2);
 				}}
-				className={sidebarActive === "tv" ? styles.active : ""}
+				className={`mb-[3px] ${sidebarActive === "tv" ? styles.active : ""}`}
 			/>
 			<MdOutlineFavoriteBorder
 				onClick={() => {

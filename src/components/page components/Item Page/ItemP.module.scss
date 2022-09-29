@@ -3,7 +3,7 @@
 }
 
 .info_wrapper {
-	@apply z-30 text-white md:relative absolute bottom-16 mt-20 2xl:mt-48  items-center bg-[rgba(0,0,0,0.688)] md:max-w-[95%] lg:max-w-[95%] xl:max-w-[90%]  2xl:mx-40 lg:px-6 lg:py-3 xl:py-6 xl:px-8 md:px-4 md:py-2 flex md:flex-row flex-col md:gap-6 lg:gap-10 2xl:gap-20 xl:gap-24 max-w-[95%] px-6 py-8 md:max-h-full md:overflow-y-hidden max-h-[70%] overflow-y-auto overflow-x-hidden;
+	@apply z-30 text-white md:relative absolute bottom-8 mt-20 2xl:mt-48  items-center bg-[rgba(0,0,0,0.688)] md:max-w-[95%] lg:max-w-[95%] xl:max-w-[90%]  2xl:mx-40 lg:px-6 lg:py-3 xl:py-6 xl:px-8 md:px-4 md:py-2 flex md:flex-row flex-col md:gap-6 lg:gap-10 2xl:gap-20 xl:gap-24 max-w-[95%] px-6 py-8 md:max-h-full md:overflow-y-hidden max-h-[70%] overflow-y-auto overflow-x-hidden;
 	> div > h1 {
 		@apply lg:text-3xl xl:text-5xl md:text-xl text-2xl font-bold;
 	}

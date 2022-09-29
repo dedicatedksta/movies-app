@@ -29,6 +29,10 @@ a {
 	}
 }
 
+body {
+	background: black;
+}
+
 #__next {
 	@apply max-h-screen flex flex-col;
 }

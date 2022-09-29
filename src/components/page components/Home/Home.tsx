@@ -65,7 +65,7 @@ const Home: FC<HomeProps> = () => {
 		<>
 			<Navbar transparent={false} />
 			{mobile ? (
-				<main className="flex flex-col justify-between">
+				<main className="flex flex-col justify-between bg-black">
 					{sidebarActive === "favourite" ? (
 						<Watchlist />
 					) : (
