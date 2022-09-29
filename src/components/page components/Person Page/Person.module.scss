@@ -1,12 +1,12 @@
 .person_wrapper {
-	@apply xl:px-32 2xl:px-40 lg:px-8 md:px-6 pb-20 flex gap-8 mt-12 min-h-fit;
+	@apply px-8 xl:px-32 2xl:px-40 lg:px-8 md:px-6 pb-20 flex md:flex-row flex-col gap-8 mt-12 min-h-fit;
 	> div {
 		> img {
 			@apply rounded-xl mb-6;
 		}
 	}
 	> .info_wrapper {
-		@apply xl:max-w-4xl 2xl:max-w-6xl lg:max-w-3xl md:max-w-lg  flex flex-col justify-between;
+		@apply max-w-sm xl:max-w-4xl 2xl:max-w-6xl lg:max-w-3xl md:max-w-lg  flex flex-col justify-between;
 
 		> div {
 			> .arrow_wrapper {

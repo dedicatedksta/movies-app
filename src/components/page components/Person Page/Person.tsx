@@ -73,39 +73,46 @@ const Person: FC<PersonProps> = ({ id }) => {
 				</div>
 			) : (
 				<div className={styles.person_wrapper}>
-					<div>
+					<h1 className="md:hidden text-3xl font-bold">{personInfo?.name}</h1>
+
+					<div className="flex md:flex-col">
 						<img
+							className=" h-56 md:h-auto"
 							src={`https://image.tmdb.org/t/p/w300${personInfo?.profile_path}`}
 							alt=""
 						/>
-						{personInfo?.known_for_department && (
-							<FormattedData
-								title="Famous for"
-								body={personInfo?.known_for_department}
-							/>
-						)}
-						{personInfo?.gender && (
-							<FormattedData
-								title="Gender"
-								body={personInfo?.gender === 2 ? "Male" : "Female"}
-							/>
-						)}
-						{birthday && (
-							<FormattedData title="Date of birth" body={birthday} />
-						)}
-						{personInfo?.place_of_birth && (
-							<FormattedData
-								title="Place of birth"
-								body={personInfo?.place_of_birth}
-							/>
-						)}
+						<div className="flex flex-col ml-8 md:ml-0">
+							{personInfo?.known_for_department && (
+								<FormattedData
+									title="Famous for"
+									body={personInfo?.known_for_department}
+								/>
+							)}
+							{personInfo?.gender && (
+								<FormattedData
+									title="Gender"
+									body={personInfo?.gender === 2 ? "Male" : "Female"}
+								/>
+							)}
+							{birthday && (
+								<FormattedData title="Date of birth" body={birthday} />
+							)}
+							{personInfo?.place_of_birth && (
+								<FormattedData
+									title="Place of birth"
+									body={personInfo?.place_of_birth}
+								/>
+							)}
+						</div>
 					</div>
 					<div className={styles.info_wrapper}>
 						<div>
-							<h1 className="text-3xl font-bold">{personInfo?.name}</h1>
+							<h1 className="hidden md:block text-3xl font-bold">
+								{personInfo?.name}
+							</h1>
 							<div className="my-8">
-								<div className="text-lg font-bold mb-2"> Biography</div>
-								<div className="xl:text-base lg:text-sm md:text-sm">
+								<div className="md:text-lg font-bold mb-2"> Biography</div>
+								<div className="text-sm xl:text-base lg:text-sm md:text-sm">
 									{shown
 										? personInfo?.biography
 										: personInfo?.biography?.slice(0, 1750)}

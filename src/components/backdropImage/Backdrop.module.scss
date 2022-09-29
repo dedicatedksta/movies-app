@@ -18,11 +18,11 @@
 		}
 
 		> .genre_wrapper {
-			@apply flex gap-4 font-bold mb-4 xl:text-base 2xl:text-lg lg:text-sm md:text-sm;
+			@apply flex gap-4 font-bold mb-4 text-sm xl:text-base 2xl:text-lg lg:text-sm md:text-sm;
 		}
 
 		> .description {
-			@apply mb-6 text-[#a2a4a4] 2xl:text-base xl:text-sm lg:text-sm md:text-sm;
+			@apply mb-6 text-[#a2a4a4]  2xl:text-base  max-h-36 line-clamp-6 2xl:line-clamp-5 xl:text-sm lg:text-sm md:text-sm;
 		}
 	}
 }

@@ -1,5 +1,5 @@
 .empty_wrapper {
-	@apply flex flex-col items-center mt-44;
+	@apply flex flex-col items-center md:mt-44 mt-36;
 	> div {
 		@apply scale-150;
 		> svg {
@@ -12,7 +12,7 @@
 }
 
 .watchlist_wrapper {
-	@apply flex flex-wrap;
+	@apply flex flex-col items-center gap-6 mb-20 sm:flex-row sm:flex-wrap sm:gap-2 sm:justify-center md:justify-start md:gap-0;
 	> div {
 		@apply 2xl:basis-1/5 xl:basis-1/4 lg:basis-1/3 md:basis-1/2;
 	}

@@ -18,7 +18,7 @@ const Watchlist: FC<WatchlistProps> = () => {
 	}, []);
 
 	return (
-		<div className="mt-2 mr-4">
+		<div className="md:mt-2 md:mr-4">
 			{watchlist.length === 0 ? (
 				<div className={styles.empty_wrapper}>
 					<div>

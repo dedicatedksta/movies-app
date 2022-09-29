@@ -1,11 +1,12 @@
-import Head from "next/head";
 import { FC, useEffect, useState } from "react";
+import { useResponsive } from "../../../hooks/useResponsive";
 import { TmbdApiService } from "../../../services/TmbdApiService";
 import { IMovie } from "../../../types/movie";
 import { ITvShow } from "../../../types/tv";
 import { getMovieGenres } from "../../../utils/getGenreList";
 import Backdrop from "../../backdropImage/Backdrop";
 import BottomItems from "../../bottomItems/BottomItems";
+import Item from "../../item/Item";
 import Navbar from "../../ui/navbar/Navbar";
 import Sidebar from "../../ui/sidebar/Sidebar";
 import Watchlist from "../../watchlist/Watchlist";
@@ -23,6 +24,7 @@ const Home: FC<HomeProps> = () => {
 	const [loading, setLoading] = useState(false);
 	const [activeTab, setActiveTab] = useState<number>(2);
 	const [sidebarActive, setSidebarActive] = useState("movie");
+	const { mobile } = useResponsive();
 
 	useEffect(() => {
 		if (sidebarActive !== "favourite") {
@@ -62,32 +64,53 @@ const Home: FC<HomeProps> = () => {
 	return (
 		<>
 			<Navbar transparent={false} />
-			<Sidebar
-				sidebarActive={sidebarActive}
-				setSidebarActive={setSidebarActive}
-				setActiveTab={setActiveTab}
-			/>
-			<main className="ml-28 max-w-full h-[100vh] relative overflow-y-hidden">
-				{sidebarActive === "favourite" ? (
-					<Watchlist />
-				) : (
-					<>
-						<Backdrop
-							loading={loading}
-							item={renderedItem}
-							genres={renderedItemGenres}
-							sidebarActive={sidebarActive}
-						/>
-						<BottomItems
-							loading={loading}
-							items={items}
-							activeTab={activeTab}
-							setActiveTab={setActiveTab}
-							sidebarActive={sidebarActive}
-						/>
-					</>
-				)}
-			</main>
+			{mobile ? (
+				<main className="flex flex-col justify-between">
+					{sidebarActive === "favourite" ? (
+						<Watchlist />
+					) : (
+						<div className="flex flex-col items-center gap-6 mb-20 sm:flex-row sm:flex-wrap sm:gap-2 sm:justify-center">
+							{items.map((item) => (
+								<Item key={item.id} item={item} sidebarActive={sidebarActive} />
+							))}
+						</div>
+					)}
+					<Sidebar
+						sidebarActive={sidebarActive}
+						setSidebarActive={setSidebarActive}
+						setActiveTab={setActiveTab}
+					/>
+				</main>
+			) : (
+				<>
+					<Sidebar
+						sidebarActive={sidebarActive}
+						setSidebarActive={setSidebarActive}
+						setActiveTab={setActiveTab}
+					/>
+					<main className="ml-28 max-w-full h-[100vh] relative overflow-y-hidden">
+						{sidebarActive === "favourite" ? (
+							<Watchlist />
+						) : (
+							<>
+								<Backdrop
+									loading={loading}
+									item={renderedItem}
+									genres={renderedItemGenres}
+									sidebarActive={sidebarActive}
+								/>
+								<BottomItems
+									loading={loading}
+									items={items}
+									activeTab={activeTab}
+									setActiveTab={setActiveTab}
+									sidebarActive={sidebarActive}
+								/>
+							</>
+						)}
+					</main>
+				</>
+			)}
 		</>
 	);
 };

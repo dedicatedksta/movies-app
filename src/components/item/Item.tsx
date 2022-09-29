@@ -28,7 +28,7 @@ const Item: FC<ItemProps> = ({ item, sidebarActive }) => {
 		}
 	}
 
-	return (
+	return item.backdrop_path ? (
 		<div className={styles.item_wrapper}>
 			{Object.keys(item).length !== 0 && (
 				<div className={styles.image_wrapper}>
@@ -53,7 +53,7 @@ const Item: FC<ItemProps> = ({ item, sidebarActive }) => {
 				</div>
 			</div>
 		</div>
-	);
+	) : null;
 };
 
 export default Item;

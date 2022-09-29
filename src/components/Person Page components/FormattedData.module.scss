@@ -1,9 +1,9 @@
 .data_wrapper {
 	@apply my-2;
 	> .title {
-		@apply font-bold;
+		@apply font-bold text-sm md:text-base;
 	}
 	> .body {
-		@apply font-thin;
+		@apply font-thin text-sm md:text-base;
 	}
 }

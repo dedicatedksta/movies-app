@@ -58,7 +58,7 @@ const LeftInfo: FC<LeftInfoProps> = ({
 	};
 
 	return (
-		<div className="flex flex-col justify-center flex-1 xl:max-w-2xl lg:max-w-md md:max-w-sm max-w-[356px] mb-16 md:mb-0 ">
+		<div className="flex flex-col justify-center flex-1 xl:max-w-2xl lg:max-w-md md:max-w-sm max-w-[356px] mb-8 md:mb-0 ">
 			<h1>{itemType === "tv" ? item.original_name : item.title}</h1>
 			<ItemInfo item={item} />
 			<div className="text-gray-400 text-sm md:text-sm lg:text-base ">
