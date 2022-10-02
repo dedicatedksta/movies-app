@@ -1,6 +1,3 @@
-## Compatable devices
-
-No mobile support, better to use on devices with 1440+ width.
 
 ## If you are from Russia
 
